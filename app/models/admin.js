@@ -1,6 +1,6 @@
 const mongoose = require( "mongoose" );
-
 const schema = mongoose.Schema;
+const uid = require ( "uid" );
 
 const adminSchema = new Schema( {
     id: { type: String, required: true },
@@ -14,6 +14,9 @@ const adminSchema = new Schema( {
     timestamps: true,
 } );
 
+adminSchema.methods.setId = function() {
+    this.id = uid( 10 );
+}
 
 adminSchema.methods.setPass = function( password ) {
     this.password = bcrypt.hashSync( password );

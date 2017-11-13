@@ -1,15 +1,24 @@
 const mongoose = require( "mongoose" );
 const extractObject = require( "../utilities" ).extractObject;
 const jwt = require( "jsonwebtoken" );
-const md5 = require( "md5" );
+const bcrypt = require( "bcrypt-nodejs" );
 
 const User = mongoose.model( "User" );
+const isValidEmail = require( "../utilities" ).isValidEmail;
+
 const SECRET = "superSuperSecret";
 
 exports.register = ( req, res ) => {
     let user = req.user;
+    const email = req.body.email;
     if ( user ) {
         return res.preconditionFailed( "existing_user" );
+    }
+    if ( !email ) {
+        return res.preconditionFailed( "missing_email" );
+    }
+    if ( !isValidEmail( email ) ) {
+        return res.preconditionFailed( "invalid_email" );
     }
     user = new User( req.body );
     user.setId();
@@ -32,9 +41,9 @@ exports.login = ( req, res ) => {
         return;
     }
 
-    const password = md5( req.body.password );
+    const password = bcrypt.compareSync( req.body.password, user.password );
     if ( user ) {
-        if ( user.password !== password ) {
+        if ( !password ) {
             return res.json( {
                 success: false,
                 message: "Authentication failed. Wrong password.",

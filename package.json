@@ -33,6 +33,10 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
-    "eslint-config-fortech": "^1.0.0"
+    "bcrypt": "^1.0.3",
+    "eslint": "^4.11.0",
+    "eslint-config-fortech": "^1.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "uid": "0.0.2"
   }
 }

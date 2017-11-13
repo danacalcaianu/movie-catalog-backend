@@ -34,13 +34,6 @@ const customResponses = {
         return this.unprocessableEntity( errorResponse );
     },
 
-    blocked( ) {
-        return this.status( 410 ).json( {
-            success: false,
-            error: "version_blocked",
-        } );
-    },
-
     unprocessableEntity( customError ) {
         return this.status( 422 ).json( {
             success: false,

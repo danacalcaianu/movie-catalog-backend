@@ -1,5 +1,6 @@
 const mongoose = require( "mongoose" );
 const bcrypt = require( "bcrypt-nodejs" );
+const uid = require( "uid" );
 
 const Schema = mongoose.Schema;
 
@@ -21,6 +22,9 @@ const userSchema = new Schema( {
     timestamps: true,
 } );
 
+userSchema.methods.setId = function() {
+    this.id = uid( 10 );
+}
 userSchema.methods.setPass = function( password ) {
     this.password = bcrypt.hashSync( password );
 }

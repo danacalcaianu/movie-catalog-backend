@@ -17,6 +17,8 @@ const userSchema = new Schema( {
     deleted: { type: Boolean, default: false },
     blockedBy: { type: String },
     blockedReason: { type: String },
+}, {
+    timestamps: true,
 } );
 
 userSchema.methods.setPass = function( password ) {

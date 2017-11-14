@@ -43,24 +43,26 @@ exports.login = ( req, res ) => {
     }
     const password = bcrypt.compareSync( req.body.password, user.password );
 
-    if ( user ) {
-        if ( !password ) {
-            return res.json( {
-                success: false,
-                message: "Authentication failed. Wrong password.",
-            } );
-        }
-
-        const token = jwt.sign( user.toObject(), SECRET, { expiresIn: 1440 } );
+    if ( !user ) {
         return res.json( {
-            success: true,
-            token,
+            success: false,
+            message: "Authentication failed. User not found.",
         } );
     }
+    if ( !password ) {
+        return res.json( {
+            success: false,
+            message: "Authentication failed. Wrong password.",
+        } );
+    }
+
+    const token = jwt.sign( user.toObject(), SECRET, { expiresIn: 1440 } );
     return res.json( {
-        success: false,
-        message: "Authentication failed. User not found.",
+        success: true,
+        token,
     } );
+    
+   
 };
 
 exports.edit = ( req, res ) => {
@@ -109,7 +111,7 @@ exports.addMovie = ( req, res ) => {
     }
 
     const movieInfo = req.body;
-    movie.create( movieInfo );
+    movie.create( movieInfo.movie );
     movie.addOwner( user.userId );
     movie.addId( );
     movie.save( );

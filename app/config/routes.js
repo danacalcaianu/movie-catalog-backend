@@ -4,6 +4,7 @@ const moviesController = require( "../controllers/moviesController" );
 
 const validateToken = require( "../middlewares/validateToken" );
 const authorize = require( "../middlewares/authorize" );
+const authorizeId = require( "../middlewares/authorizeId" );
 const checkExistingMovie = require( "../middlewares/checkExistingMovie" );
 
 const express = require( "express" );
@@ -51,7 +52,7 @@ router.post( "/users/login", authorize, usersController.login );
 *    @apiParam {String} id  User ID required.
 *    @apiParam {String} password  Mandatory password.
 */
-router.put( "/users/:userId/edit", authorize, validateToken, usersController.edit );
+router.put( "/users/:userId/edit", authorizeId, validateToken, usersController.edit );
 
 /**
 *    @apiGroup User

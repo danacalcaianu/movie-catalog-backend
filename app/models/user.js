@@ -24,10 +24,11 @@ const userSchema = new Schema( {
 
 userSchema.methods.setId = function() {
     this.id = uid( 10 );
-}
+};
+
 userSchema.methods.setPass = function( password ) {
     this.password = bcrypt.hashSync( password );
-}
+};
 
 userSchema.virtual( "fullName" ).get( function () {
   return this.firstName + this.lastName;

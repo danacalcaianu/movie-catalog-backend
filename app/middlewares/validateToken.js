@@ -4,7 +4,6 @@ const SECRET = "superSuperSecret";
 
 module.exports = function( req, res, next ) {
     const token = req.body.token || req.query.token || req.headers[ "x-access-token" ];
-
     if ( token ) {
         jwt.verify( token, SECRET, function( err, decoded ) {
             if ( err ) {
@@ -14,6 +13,9 @@ module.exports = function( req, res, next ) {
                 } );
             }
             req.decoded = decoded;
+            if ( req.user.id !== decoded.id ) {
+                return res.unauthorized( );
+            }
             return next( );
         } );
     } else {

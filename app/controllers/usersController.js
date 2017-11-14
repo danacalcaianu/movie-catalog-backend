@@ -65,13 +65,21 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const user = req.user;
-    const name = req.body.name;
-    const sex = req.body.sex;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const gender = req.body.gender;
     const age = req.body.age;
+    const categories = req.body.categories;
+    const avatar = req.body.avatar;
+    const email = req.body.email;
 
-    user.name = name;
-    user.sex = sex;
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.gender = gender;
     user.age = age;
+    user.categories = categories;
+    user.avatar = avatar;
+    user.email = email;
 
     user.save( function( err, savedUser ) {
         if ( err ) {
@@ -102,7 +110,7 @@ exports.addMovie = ( req, res ) => {
 
     const movieInfo = req.body;
     movie.create( movieInfo );
-    movie.addedBy( user.userId );
+    movie.addOwner( user.userId );
     movie.addId( );
     movie.save( );
 

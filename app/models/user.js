@@ -31,7 +31,7 @@ userSchema.methods.setPass = function( password ) {
 };
 
 userSchema.methods.setFullName = function( ) {
-    this.firstName + this.lastName;
+    return `${this.firstName} ${this.lastName}`;
 };
 
 module.exports = mongoose.model( "User", userSchema );

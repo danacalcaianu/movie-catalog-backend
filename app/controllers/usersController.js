@@ -6,7 +6,6 @@ const bcrypt = require( "bcrypt-nodejs" );
 
 const User = mongoose.model( "User" );
 const Movie = mongoose.model( "Movie" );
-
 const SECRET = "superSuperSecret";
 
 exports.register = ( req, res ) => {
@@ -58,13 +57,7 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const user = req.user;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const gender = req.body.gender;
-    const age = req.body.age;
-    const categories = req.body.categories;
-    const avatar = req.body.avatar;
-    const email = req.body.email;
+    const { firstName, lastName, gender, age, categories, avatar, email } = req.body;
 
     user.firstName = firstName;
     user.lastName = lastName;

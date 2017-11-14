@@ -1,4 +1,3 @@
-
 const mongoose = require( "mongoose" );
 const uid = require( "uid" );
 
@@ -53,7 +52,7 @@ movieSchema.methods.addReview = function ( body, user ) {
     const review = {
         title: body.title,
         description: body.description,
-        author: user.id,
+        author: user.setFullName(),
         rating: body.rating,
         id: uid( 10 ),
     };

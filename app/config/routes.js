@@ -84,6 +84,12 @@ router.put( "/users/:userId/rateMovie/:movieId", checkExistingModel( "userId", "
 router.put( "/users/:userId/reviewMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.reviewMovie );
 
 /**
+*    @apiGroup User
+*    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
+*/
+// router.put( "/users/:userId/deleteReview/:reviewId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.reviewMovie );
+
+/**
 *    @apiGroup Movie
 *    @api {get} /movies/:movieId/getMovie Get a movie.
 *    @apiParam {String} id  Movie ID required.

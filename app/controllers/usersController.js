@@ -4,6 +4,7 @@ const jwt = require( "jsonwebtoken" );
 const bcrypt = require( "bcrypt-nodejs" );
 
 const User = mongoose.model( "User" );
+// const Movie = mongoose.model( "Movie" );
 const isValidEmail = require( "../utilities" ).isValidEmail;
 
 const SECRET = "superSuperSecret";
@@ -87,4 +88,23 @@ exports.delete = ( req, res ) => {
 
     user.remove( );
     res.success( );
+};
+
+exports.addMovie = ( req, res ) => {
+    // check if user exists (  middlewares )
+    const user = req.user;
+    // check if movie exists (  middlewares )
+    const movie = req.movie;
+
+    if ( movie ) {
+        return res.preconditionFailed( "existing_movie" );
+    }
+
+    const movieInfo = req.body;
+    movie.create( movieInfo );
+    movie.addedBy( user.userId );
+    movie.addId( );
+    movie.save( );
+
+    return res.success( movie );
 };

@@ -75,6 +75,8 @@ router.put( "/users/edit", authorize, validateToken, usersController.edit );
 */
 router.delete( "/users/delete", authorize, validateToken, usersController.delete );
 
+router.addMovie( "/users/addMovie", authorize, validateToken, usersController.addMovie );
+
 router.get( "/test", function( req, res ) {
     res.json( { success: true } );
 } );

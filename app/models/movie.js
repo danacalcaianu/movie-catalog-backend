@@ -64,7 +64,7 @@ movieSchema.methods.addOwner = function( userId ) {
 };
 
 movieSchema.methods.addId = function( ) {
-    return this.id = uid( 10 );
+    this.id = uid( 10 );
 };
 
 module.exports = mongoose.model( "Movie", movieSchema );

@@ -1,26 +1,18 @@
 const mongoose = require( "mongoose" );
 const extractObject = require( "../utilities" ).extractObject;
+const isValidEmail = require( "../utilities" ).isValidEmail;
 const jwt = require( "jsonwebtoken" );
 const bcrypt = require( "bcrypt-nodejs" );
 
 const User = mongoose.model( "User" );
-// const Movie = mongoose.model( "Movie" );
-const isValidEmail = require( "../utilities" ).isValidEmail;
-
-
+const Movie = mongoose.model( "Movie" );
 const SECRET = "superSuperSecret";
 
 exports.register = ( req, res ) => {
     let user = req.user;
     const email = req.body.email;
-    if ( user ) {
+    if ( user || !email || !isValidEmail( email ) ) {
         return res.preconditionFailed( "existing_user" );
-    }
-    if ( !email ) {
-        return res.preconditionFailed( "missing_email" );
-    }
-    if ( !isValidEmail( email ) ) {
-        return res.preconditionFailed( "invalid_email" );
     }
     user = new User( req.body );
     user.setId();
@@ -61,8 +53,7 @@ exports.login = ( req, res ) => {
         success: true,
         token,
     } );
-    
-   
+
 };
 
 exports.edit = ( req, res ) => {
@@ -104,16 +95,15 @@ exports.addMovie = ( req, res ) => {
     // check if user exists (  middlewares )
     const user = req.user;
     // check if movie exists (  middlewares )
-    const movie = req.movie;
-
+    let movie = req.movie;
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
     }
 
-    const movieInfo = req.body;
-    movie.create( movieInfo.movie );
-    movie.addOwner( user.userId );
+    movie = new Movie( req.body );
+    movie.addOwner( user.id );
     movie.addId( );
+    console.log(movie);
     movie.save( );
 
     return res.success( movie );

@@ -3,6 +3,7 @@ const mongoose = require( "mongoose" );
 const User = mongoose.model( "User" );
 
 module.exports = function( req, res, next ) {
+    console.log("here");
     const username = req.body.username;
     if ( !username ) {
         return res.preconditionFailed( "missing_username" );

@@ -63,7 +63,7 @@ router.put( "/users/:userId/edit", authorizeId, validateToken, usersController.e
 *           id:123456789
 *       }
 */
-router.delete( "/users/:userId/deleteProfile", authorize, validateToken, usersController.delete );
+router.delete( "/users/:userId/deleteProfile", authorizeId, validateToken, usersController.delete );
 
 /**
 *    @apiGroup User
@@ -74,7 +74,7 @@ router.delete( "/users/:userId/deleteProfile", authorize, validateToken, usersCo
 *           id:123456789
 *       }
 */
-router.post( "/users/:userId/addMovie", authorize, validateToken, usersController.addMovie );
+router.put( "/users/:userId/addMovie", authorizeId, validateToken, usersController.addMovie );
 
 /**
 *    @apiGroup Movie

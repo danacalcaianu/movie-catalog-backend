@@ -12,13 +12,13 @@ exports.register = ( req, res ) => {
     }
     admin = new Admin( req.body );
     admin.setPass( req.body.password );
-    admin.save( function( err, savedAdmin ) {
+    admin.save( ( err, savedAdmin ) => {
         if ( err ) {
             return res.validationError( err );
         }
         return res.success( extractObject(
-                savedAdmin,
-                [ "id", "username" ] ) );
+            savedAdmin,
+            [ "id", "username" ] ) );
     } );
 };
 
@@ -52,17 +52,14 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const admin = req.admin;
-    const email = req.body.email;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const avatar = req.body.avatar;
+    const { email, firstName, lastName, avatar } = req.body;
 
     admin.email = email;
     admin.firstName = firstName;
     admin.lastName = lastName;
     admin.avatar = avatar;
 
-    admin.save( function( err, savedAdmin ) {
+    admin.save( ( err, savedAdmin ) => {
         if ( err ) {
             return res.validationError( err );
         }

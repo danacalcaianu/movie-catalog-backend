@@ -4,6 +4,7 @@ const moviesController = require( "../controllers/moviesController" );
 
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
+const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
 
 const express = require( "express" );
 
@@ -37,7 +38,7 @@ router.post( "/users/registration", checkExistingModel( "username", "User", "use
 *       {
 *         "user": {
 *            "token": dahljkhajfhajku32974eq9kjh
-*           }
+*
 *      }
 */
 router.post( "/users/login", checkExistingModel( "username", "User", "user" ), usersController.login );
@@ -60,7 +61,6 @@ router.put( "/users/:userId/edit", checkExistingModel( "userId", "User", "user" 
 *           id:123456789
 *       }
 */
-
 router.delete( "/users/:userId/deleteProfile", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.delete );
 
 /**
@@ -72,7 +72,7 @@ router.delete( "/users/:userId/deleteProfile", checkExistingModel( "userId", "Us
 *           id:123456789
 *       }
 */
-router.post( "/users/:userId/addMovie", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "title", "Movie", "movie" ), usersController.addMovie );
+router.post( "/users/:userId/addMovie", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.addMovie );
 
 /**
 *    @apiGroup Movie
@@ -84,10 +84,10 @@ router.get( "/movies/:movieId/getMovie", checkExistingModel( "movieId", "Movie",
 
 /**
 *    @apiGroup Movie
-*    @api {get} /movies/getAll/:rating Get all movies.
-*    @apiDescription returns all movies if rating param is missing, otherwise all movies based on the param value
+*    @api {get} /movies/getAll/:param Get all movies.
+*    @apiDescription returns all movies if param is missing, otherwise all movies based on the param value (rating, categories)
 */
-    //router.get( "/movies/getAll/:rating", moviesController.getAllMovies );
+router.get( "/movies/getAll/:param?", checkRequestParameter, moviesController.getAllMovies );
 
 /**
 *    @apiGroup Admin
@@ -140,8 +140,7 @@ router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "ad
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/delete", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, usersController.delete );
-
+router.delete( "/admins/:adminId/delete", checkExistingModel( "adminId", "Admin", "user" ), validateToken, usersController.delete );
 
 router.get( "/test", function( req, res ) {
     res.json( { success: true } );

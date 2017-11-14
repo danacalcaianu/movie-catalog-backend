@@ -77,6 +77,13 @@ router.delete( "/users/:userId/delete", authorize, validateToken, usersControlle
 
 // router.addMovie( "/users/addMovie", authorize, validateToken, usersController.addMovie );
 
+
+router.post( "/admins/registration", authorize, usersController.register );
+router.post( "/admins/login", authorize, usersController.login );
+router.put( "/admins/:adminId/edit", authorize, validateToken, usersController.edit );
+router.delete( "/admins/:adminId/delete", authorize, validateToken, usersController.delete );
+
+
 router.get( "/test", function( req, res ) {
     res.json( { success: true } );
 } );

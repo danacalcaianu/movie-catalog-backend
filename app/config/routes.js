@@ -5,17 +5,11 @@ const moviesController = require( "../controllers/moviesController" );
 const validateToken = require( "../middlewares/validateToken" );
 const authorize = require( "../middlewares/authorize" );
 const checkExistingMovie = require( "../middlewares/checkExistingMovie" );
-// add other middlewares that are used
 
 const express = require( "express" );
 
 const router = express.Router( );
 
-// Add routes below
-// Example: router.post/get/put/ ..../delete ( path ), middlewares ( if any ), controllerFunction );
-
-// use apiDoc to generate documentation for API routes
-// Details on how to use on: http://apidocjs.com/
 
 /**
 *    @apiGroup User
@@ -30,10 +24,6 @@ const router = express.Router( );
 *         "user": {
 *            "id": 123456789,
 *            "username": "user123"
-*            "password": "pass123"
-*            "name": "Ana",
-*            "sex": "female",
-*            "age": 30
 *           }
 *      }
 */
@@ -59,9 +49,7 @@ router.post( "/users/login", authorize, usersController.login );
 *    @api {put} /users/:userId/edit Edit the profile and filtering options.
 *    @apiDescription Useful to change profile information
 *    @apiParam {String} id  User ID required.
-*    @apiParam {String} name  Mandatory name.
-*    @apiParam {Number} age  Mandatory age. Minimum 18.
-*    @apiParam {String} sex  Mandatory sex.
+*    @apiParam {String} password  Mandatory password.
 */
 router.put( "/users/:userId/edit", authorize, validateToken, usersController.edit );
 
@@ -79,21 +67,71 @@ router.delete( "/users/:userId/deleteProfile", authorize, validateToken, usersCo
 *    @apiGroup Movie
 *    @api {get} /movies/:movieId/getMovie Get a movie.
 *    @apiParam {String} id  Movie ID required.
+*    @apiSampleRequest http://localhost:3030/movies/1223frhs/getMovie
+*/
+router.get( "/movies/:movieId/getMovie", checkExistingMovie, moviesController.getMovie );
+
+/**
+*    @apiGroup Movie
+*    @api {get} /movies/getAll/:rating Get all movies.
+*    @apiDescription returns all movies if rating param is missing, otherwise all movies based on the param value
+*/
+router.get( "/movies/getAll/:rating", checkExistingMovie, moviesController.getMovie );
+
+// router.post( "/users/addMovie", authorize, validateToken, usersController.addMovie );
+
+
+/**
+*    @apiGroup Admin
+*    @api {post} /admins/registration Adding an admin to the db.
+*    @apiParam {String} id  Admin ID required.
+*    @apiParam {String} username  Mandatory  username.
+*    @apiParam {String} firstName  Mandatory first name.
+*    @apiParam {String} lastName  Mandatory last name.
+*    @apiParam {String} email  Mandatory email.
+*    @apiExample {response} Example response:
+*       {
+*         "admin": {
+*            "id": 123456789,
+*            "username": "user123"
+*           }
+*      }
+*/
+router.post( "/admins/registration", authorize, usersController.register );
+
+/**
+*    @apiGroup Admin
+*    @api {post} /admins/login Admin login route.
+*    @apiParam {String} id  Admin ID required.
+*    @apiParam {String} username  Admin username required.
+*    @apiParam {String} password  Admin password required.
+*    @apiExample {response} Example response:
+*       {
+*         "user": {
+*            "token": dahljkhajfhajku32974eq9kjh
+*           }
+*      }
+*/
+router.post( "/admins/login", authorize, usersController.login );
+
+/**
+*    @apiGroup Admin
+*    @api {put} /admins/:adminId/edit Edit the profile and filtering options.
+*    @apiDescription Useful to change profile information
+*    @apiParam {String} id  Admin ID required.
+*    @apiParam {String} password  Mandatory password.
+*/
+router.put( "/admins/:adminId/edit", authorize, validateToken, usersController.edit );
+
+/**
+*    @apiGroup Admin
+*    @api {delete} /admins/:adminId/adminProfile Delete an admin.
+*    @apiParam {String} id Admin ID required.
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789
 *       }
 */
-router.get( "/movies/:movieId/getMovie", checkExistingMovie, moviesController.getMovie );
-
-router.get( "/movies/getAll", checkExistingMovie, moviesController.getMovie );
-
-// router.post( "/users/addMovie", authorize, validateToken, usersController.addMovie );
-
-
-router.post( "/admins/registration", authorize, usersController.register );
-router.post( "/admins/login", authorize, usersController.login );
-router.put( "/admins/:adminId/edit", authorize, validateToken, usersController.edit );
 router.delete( "/admins/:adminId/delete", authorize, validateToken, usersController.delete );
 
 

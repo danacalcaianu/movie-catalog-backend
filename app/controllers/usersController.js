@@ -47,7 +47,6 @@ exports.login = ( req, res ) => {
             message: "Authentication failed. Wrong password.",
         } );
     }
-
     const token = jwt.sign( user.toObject(), SECRET, { expiresIn: 1440 } );
     return res.json( {
         success: true,
@@ -96,6 +95,7 @@ exports.addMovie = ( req, res ) => {
     const user = req.user;
     // check if movie exists (  middlewares )
     let movie = req.movie;
+    console.log(movie);
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
     }
@@ -103,7 +103,6 @@ exports.addMovie = ( req, res ) => {
     movie = new Movie( req.body );
     movie.addOwner( user.id );
     movie.addId( );
-    console.log(movie);
     movie.save( );
 
     return res.success( movie );

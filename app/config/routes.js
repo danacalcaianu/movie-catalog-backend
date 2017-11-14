@@ -3,14 +3,11 @@ const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
 
 const validateToken = require( "../middlewares/validateToken" );
-const authorize = require( "../middlewares/authorize" );
-const authorizeId = require( "../middlewares/authorizeId" );
-const checkExistingMovie = require( "../middlewares/checkExistingMovie" );
+const checkExistingModel = require( "../middlewares/checkExistingModel" );
 
 const express = require( "express" );
 
 const router = express.Router( );
-
 
 /**
 *    @apiGroup User
@@ -28,7 +25,7 @@ const router = express.Router( );
 *           }
 *      }
 */
-router.post( "/users/registration", authorize, usersController.register );
+router.post( "/users/registration", checkExistingModel( "username", "User", "user" ), usersController.register );
 
 /**
 *    @apiGroup User
@@ -43,7 +40,7 @@ router.post( "/users/registration", authorize, usersController.register );
 *           }
 *      }
 */
-router.post( "/users/login", authorize, usersController.login );
+router.post( "/users/login", checkExistingModel( "username", "User", "user" ), usersController.login );
 
 /**
 *    @apiGroup User
@@ -52,7 +49,7 @@ router.post( "/users/login", authorize, usersController.login );
 *    @apiParam {String} id  User ID required.
 *    @apiParam {String} password  Mandatory password.
 */
-router.put( "/users/:userId/edit", authorizeId, validateToken, usersController.edit );
+router.put( "/users/:userId/edit", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.edit );
 
 /**
 *    @apiGroup User
@@ -63,7 +60,8 @@ router.put( "/users/:userId/edit", authorizeId, validateToken, usersController.e
 *           id:123456789
 *       }
 */
-router.delete( "/users/:userId/deleteProfile", authorizeId, validateToken, usersController.delete );
+
+router.delete( "/users/:userId/deleteProfile", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.delete );
 
 /**
 *    @apiGroup User
@@ -74,7 +72,7 @@ router.delete( "/users/:userId/deleteProfile", authorizeId, validateToken, users
 *           id:123456789
 *       }
 */
-router.put( "/users/:userId/addMovie", authorizeId, validateToken, usersController.addMovie );
+router.post( "/users/:userId/addMovie", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "title", "Movie", "movie" ), usersController.addMovie );
 
 /**
 *    @apiGroup Movie
@@ -82,14 +80,14 @@ router.put( "/users/:userId/addMovie", authorizeId, validateToken, usersControll
 *    @apiParam {String} id  Movie ID required.
 *    @apiSampleRequest http://localhost:3030/movies/1223frhs/getMovie
 */
-router.get( "/movies/:movieId/getMovie", checkExistingMovie, moviesController.getMovie );
+router.get( "/movies/:movieId/getMovie", checkExistingModel( "movieId", "Movie", "movie" ), moviesController.getMovie );
 
 /**
 *    @apiGroup Movie
 *    @api {get} /movies/getAll/:rating Get all movies.
 *    @apiDescription returns all movies if rating param is missing, otherwise all movies based on the param value
 */
-router.get( "/movies/getAll/:rating", checkExistingMovie, moviesController.getMovie );
+    //router.get( "/movies/getAll/:rating", moviesController.getAllMovies );
 
 /**
 *    @apiGroup Admin
@@ -107,7 +105,7 @@ router.get( "/movies/getAll/:rating", checkExistingMovie, moviesController.getMo
 *           }
 *      }
 */
-router.post( "/admins/registration", authorize, usersController.register );
+router.post( "/admins/registration", checkExistingModel( "username", "Admin", "admin" ), usersController.register );
 
 /**
 *    @apiGroup Admin
@@ -122,7 +120,7 @@ router.post( "/admins/registration", authorize, usersController.register );
 *           }
 *      }
 */
-router.post( "/admins/login", authorize, usersController.login );
+router.post( "/admins/login", checkExistingModel( "username", "Admin", "admin" ), usersController.login );
 
 /**
 *    @apiGroup Admin
@@ -131,7 +129,7 @@ router.post( "/admins/login", authorize, usersController.login );
 *    @apiParam {String} id  Admin ID required.
 *    @apiParam {String} password  Mandatory password.
 */
-router.put( "/admins/:adminId/edit", authorize, validateToken, usersController.edit );
+router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, usersController.edit );
 
 /**
 *    @apiGroup Admin
@@ -142,7 +140,7 @@ router.put( "/admins/:adminId/edit", authorize, validateToken, usersController.e
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/delete", authorize, validateToken, usersController.delete );
+router.delete( "/admins/:adminId/delete", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, usersController.delete );
 
 
 router.get( "/test", function( req, res ) {

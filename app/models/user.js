@@ -14,7 +14,7 @@ const userSchema = new Schema( {
 } );
 
 userSchema.methods.setPass = function( password ) {
-  
-}
+
+};
 
 module.exports = mongoose.model( "User", userSchema );

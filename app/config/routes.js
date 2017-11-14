@@ -1,9 +1,10 @@
 const errorsController = require( "../controllers/errorsController" );
 const usersController = require( "../controllers/usersController" );
-// add other controllers that are used
+const moviesController = require( "../controllers/moviesController" );
 
 const validateToken = require( "../middlewares/validateToken" );
 const authorize = require( "../middlewares/authorize" );
+const checkExistingMovie = require( "../middlewares/checkExistingMovie" );
 // add other middlewares that are used
 
 const express = require( "express" );
@@ -54,25 +55,38 @@ router.post( "/users/login", authorize, usersController.login );
 
 /**
 *    @apiGroup User
-*    @api {put} /users/edit Edit the profile and filtering options.
+*    @api {put} /users/:userId/edit Edit the profile and filtering options.
 *    @apiDescription Useful to change profile information
 *    @apiParam {String} id  User ID required.
 *    @apiParam {String} name  Mandatory name.
 *    @apiParam {Number} age  Mandatory age. Minimum 18.
 *    @apiParam {String} sex  Mandatory sex.
 */
-router.put( "/users/edit", authorize, validateToken, usersController.edit );
+router.put( "/users/:userId/edit", authorize, validateToken, usersController.edit );
 
 /**
 *    @apiGroup User
-*    @api {delete} /users/delete Delete an user.
+*    @api {delete} /users/:userId/deleteProfile Delete an user.
 *    @apiParam {String} id  User ID required.
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789
 *       }
 */
-router.delete( "/users/delete", authorize, validateToken, usersController.delete );
+router.delete( "/users/:userId/deleteProfile", authorize, validateToken, usersController.delete );
+
+/**
+*    @apiGroup Movie
+*    @api {get} /movies/:movieId/getMovie Get a movie.
+*    @apiParam {String} id  Movie ID required.
+*    @apiHeaderExample Example header
+*       {
+*           id:123456789
+*       }
+*/
+router.get( "/movies/:movieId/getMovie", checkExistingMovie, moviesController.getMovie );
+
+router.get( "/movies//getAll", checkExistingMovie, moviesController.getMovie );
 
 router.get( "/test", function( req, res ) {
     res.json( { success: true } );

@@ -1,23 +1,23 @@
 const mongoose = require( "mongoose" );
 
-const User = mongoose.model( "User" );
+const Movie = mongoose.model( "Movie" );
 
 module.exports = function( req, res, next ) {
-    const id = req.body.id;
+    const id = req.params.movieId;
     if ( !id ) {
         return res.preconditionFailed( "missing_id" );
     }
 
-    return User.findOne(
+    return Movie.findOne(
         { id },
-        function( err, user ) {
+        function( err, foundMovie ) {
             if ( err ) {
               // if( err ) {
                 return res.serverError( );
               // }
               // return res.unauthorized( );
             }
-            req.user = user;
+            req.movie = foundMovie;
             return next( );
         } );
 };

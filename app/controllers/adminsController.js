@@ -2,44 +2,43 @@ const mongoose = require( "mongoose" );
 const extractObject = require( "../utilities" ).extractObject;
 const jwt = require( "jsonwebtoken" );
 
-const User = mongoose.model( "User" );
-
+const Admin = mongoose.model( "Admin" );
 const SECRET = "superSuperSecret";
 
 exports.register = ( req, res ) => {
-    let user = req.user;
-    if ( user ) {
-        return res.preconditionFailed( "existing_user" );
+    let admin = req.admin;
+    if ( admin ) {
+        return res.preconditionFailed( "existing_admin" );
     }
-    user = new User( req.body );
-    user.setPass( req.body.password );
-    user.save( function( err, savedUser ) {
+    admin = new Admin( req.body );
+    admin.setPass( req.body.password );
+    admin.save( function( err, savedAdmin ) {
         if ( err ) {
             return res.validationError( err );
         }
         return res.success( extractObject(
-                savedUser,
+                savedAdmin,
                 [ "id", "username" ] ) );
     } );
 };
 
 exports.login = ( req, res ) => {
-    const user = req.user;
+    const admin = req.admin;
     if ( !req.body.password ) {
         res.status( 400 ).send( "password required" );
         return;
     }
 
     const password = req.body.password;
-    if ( user ) {
-        if ( user.password !== password ) {
+    if ( admin ) {
+        if ( admin.password !== password ) {
             return res.json( {
                 success: false,
                 message: "Authentication failed. Wrong password.",
             } );
         }
 
-        const token = jwt.sign( user.toObject(), SECRET, { expiresIn: 1440 } );
+        const token = jwt.sign( admin.toObject(), SECRET, { expiresIn: 1440 } );
         return res.json( {
             success: true,
             token,
@@ -47,33 +46,35 @@ exports.login = ( req, res ) => {
     }
     return res.json( {
         success: false,
-        message: "Authentication failed. User not found.",
+        message: "Authentication failed. Admin not found.",
     } );
 };
 
 exports.edit = ( req, res ) => {
-    const user = req.user;
-    const name = req.body.name;
-    const sex = req.body.sex;
-    const age = req.body.age;
+    const admin = req.admin;
+    const email = req.body.email;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const avatar = req.body.avatar;
 
-    user.name = name;
-    user.sex = sex;
-    user.age = age;
+    admin.email = email;
+    admin.firstName = firstName;
+    admin.lastName = lastName;
+    admin.avatar = avatar;
 
-    user.save( function( err, savedUser ) {
+    admin.save( function( err, savedAdmin ) {
         if ( err ) {
             return res.validationError( err );
         }
         return res.success( extractObject(
-            savedUser,
-            [ "id", "name", "age", "sex" ] ) );
+            savedAdmin,
+            [ "id", "email", "firstName", "lastName", "avatar" ] ) );
     } );
 };
 
 exports.delete = ( req, res ) => {
-    const user = req.user;
+    const admin = req.admin;
 
-    user.remove( );
+    admin.remove( );
     res.success( );
 };

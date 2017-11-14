@@ -8,6 +8,11 @@ module.exports = function( req, res, next ) {
         return res.preconditionFailed( "missing_username" );
     }
     return User.findOne(
+// <<<<<<< create-movie-model
+//         { id },
+//         function( err, user ) {
+//             if ( err ) {
+// =======
         { username },
         function( err, userFound ) {
             if( err ) {

@@ -7,6 +7,7 @@ const User = mongoose.model( "User" );
 // const Movie = mongoose.model( "Movie" );
 const isValidEmail = require( "../utilities" ).isValidEmail;
 
+
 const SECRET = "superSuperSecret";
 
 exports.register = ( req, res ) => {
@@ -27,11 +28,10 @@ exports.register = ( req, res ) => {
     user.save( function( err, savedUser ) {
         if ( err ) {
             return res.validationError( err );
-        } else {
-            return res.success( extractObject(
+        }
+        return res.success( extractObject(
                 savedUser,
                 [ "id", "username" ] ) );
-        }
     } );
 };
 
@@ -41,8 +41,8 @@ exports.login = ( req, res ) => {
         res.status( 400 ).send( "password required" );
         return;
     }
-
     const password = bcrypt.compareSync( req.body.password, user.password );
+
     if ( user ) {
         if ( !password ) {
             return res.json( {
@@ -55,7 +55,7 @@ exports.login = ( req, res ) => {
         return res.json( {
             success: true,
             token,
-            } );
+        } );
     }
     return res.json( {
         success: false,

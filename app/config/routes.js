@@ -21,9 +21,10 @@ const router = express.Router( );
 *    @apiGroup User
 *    @api {post} /users/registration Adding an user to the db.
 *    @apiParam {String} id  User ID required.
-*    @apiParam {String} name  Mandatory name.
-*    @apiParam {Number} age  Mandatory age. Minimum 18.
-*    @apiParam {String} sex  Mandatory sex.
+*    @apiParam {String} username  Mandatory  username.
+*    @apiParam {String} firstName  Mandatory first name.
+*    @apiParam {String} lastName  Mandatory last name.
+*    @apiParam {String} email  Mandatory email.
 *    @apiExample {response} Example response:
 *       {
 *         "user": {
@@ -74,7 +75,6 @@ router.put( "/users/:userId/edit", authorize, validateToken, usersController.edi
 *       }
 */
 router.delete( "/users/:userId/deleteProfile", authorize, validateToken, usersController.delete );
-
 /**
 *    @apiGroup Movie
 *    @api {get} /movies/:movieId/getMovie Get a movie.
@@ -86,7 +86,16 @@ router.delete( "/users/:userId/deleteProfile", authorize, validateToken, usersCo
 */
 router.get( "/movies/:movieId/getMovie", checkExistingMovie, moviesController.getMovie );
 
-router.get( "/movies//getAll", checkExistingMovie, moviesController.getMovie );
+router.get( "/movies/getAll", checkExistingMovie, moviesController.getMovie );
+
+// router.post( "/users/addMovie", authorize, validateToken, usersController.addMovie );
+
+
+router.post( "/admins/registration", authorize, usersController.register );
+router.post( "/admins/login", authorize, usersController.login );
+router.put( "/admins/:adminId/edit", authorize, validateToken, usersController.edit );
+router.delete( "/admins/:adminId/delete", authorize, validateToken, usersController.delete );
+
 
 router.get( "/test", function( req, res ) {
     res.json( { success: true } );

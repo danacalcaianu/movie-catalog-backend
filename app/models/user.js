@@ -30,8 +30,8 @@ userSchema.methods.setPass = function( password ) {
     this.password = bcrypt.hashSync( password );
 };
 
-userSchema.virtual( "fullName" ).get( function () {
-  return this.firstName + this.lastName;
-} );
+userSchema.methods.setFullName = function( ) {
+    this.firstName + this.lastName;
+};
 
 module.exports = mongoose.model( "User", userSchema );

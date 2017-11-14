@@ -107,3 +107,10 @@ exports.addMovie = ( req, res ) => {
 
     return res.success( movie );
 };
+
+exports.rateMovie = ( req, res ) => {
+    const movie = req.movie;
+    movie.addRating( req.body.rating );
+    movie.save();
+    return res.success( movie );
+};

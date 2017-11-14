@@ -67,4 +67,8 @@ movieSchema.methods.addId = function( ) {
     this.id = uid( 10 );
 };
 
+movieSchema.methods.addRating = function( rating ) {
+    this.rating = rating;
+};
+
 module.exports = mongoose.model( "Movie", movieSchema );

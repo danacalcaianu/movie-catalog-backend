@@ -6,6 +6,7 @@ const bcrypt = require( "bcrypt-nodejs" );
 
 const User = mongoose.model( "User" );
 const Movie = mongoose.model( "Movie" );
+
 const SECRET = "superSuperSecret";
 
 exports.register = ( req, res ) => {
@@ -95,7 +96,6 @@ exports.addMovie = ( req, res ) => {
     const user = req.user;
     // check if movie exists (  middlewares )
     let movie = req.movie;
-    console.log(movie);
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
     }
@@ -111,6 +111,13 @@ exports.addMovie = ( req, res ) => {
 exports.rateMovie = ( req, res ) => {
     const movie = req.movie;
     movie.addRating( req.body.rating );
+    movie.save();
+    return res.success( movie );
+};
+
+exports.reviewMovie = ( req, res ) => {
+    const movie = req.movie;
+    movie.addReview( req.body, req.user );
     movie.save();
     return res.success( movie );
 };

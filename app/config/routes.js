@@ -1,10 +1,8 @@
 const errorsController = require( "../controllers/errorsController" );
 const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
-
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
-
 const express = require( "express" );
 
 const router = express.Router( );
@@ -60,7 +58,6 @@ router.put( "/users/:userId/edit", checkExistingModel( "userId", "User", "user" 
 *           id:123456789
 *       }
 */
-
 router.delete( "/users/:userId/deleteProfile", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.delete );
 
 /**
@@ -79,6 +76,12 @@ router.post( "/users/:userId/addMovie", checkExistingModel( "userId", "User", "u
 *    @api {put} /users/:userId/rateMovie/:movieId Rate a movie.
 */
 router.put( "/users/:userId/rateMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.rateMovie );
+
+/**
+*    @apiGroup User
+*    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
+*/
+router.put( "/users/:userId/reviewMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.reviewMovie );
 
 /**
 *    @apiGroup Movie

@@ -63,6 +63,18 @@ router.put( "/users/:userId/edit", authorize, validateToken, usersController.edi
 *       }
 */
 router.delete( "/users/:userId/deleteProfile", authorize, validateToken, usersController.delete );
+
+/**
+*    @apiGroup User
+*    @api {delete} /users/:userId/addMovie Add a movie.
+*    @apiParam {String} id  User ID required.
+*    @apiHeaderExample Example header
+*       {
+*           id:123456789
+*       }
+*/
+router.post( "/users/:userId/addMovie", authorize, validateToken, usersController.addMovie );
+
 /**
 *    @apiGroup Movie
 *    @api {get} /movies/:movieId/getMovie Get a movie.
@@ -77,9 +89,6 @@ router.get( "/movies/:movieId/getMovie", checkExistingMovie, moviesController.ge
 *    @apiDescription returns all movies if rating param is missing, otherwise all movies based on the param value
 */
 router.get( "/movies/getAll/:rating", checkExistingMovie, moviesController.getMovie );
-
-// router.post( "/users/addMovie", authorize, validateToken, usersController.addMovie );
-
 
 /**
 *    @apiGroup Admin

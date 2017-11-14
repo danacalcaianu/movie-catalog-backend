@@ -8,6 +8,6 @@ exports.getMovie = ( req, res ) => {
     }
     return res.success( extractObject(
         movie,
-        [ "title", "description", "director", "categories", "cast", "rating", "releaseDate", "reviews", "picture" ],
+        [ "title", "description", "director", "categories", "cast", "rating", "releaseDate", "reviews", "picture" ]
     ) );
 };

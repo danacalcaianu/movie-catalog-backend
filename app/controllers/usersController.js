@@ -58,7 +58,7 @@ exports.login = ( req, res ) => {
 exports.edit = ( req, res ) => {
     const user = req.user;
     user.editUser( req.body );
-    user.save( function( err, savedUser ) {
+    user.save( ( err, savedUser ) => {
         if ( err ) {
             return res.validationError( err );
         }

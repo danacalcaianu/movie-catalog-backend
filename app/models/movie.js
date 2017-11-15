@@ -72,20 +72,19 @@ movieSchema.methods.addId = ( ) => {
     this.id = uid( 10 );
 };
 
-movieSchema.methods.addRating = function( rating ) {
+movieSchema.methods.addRating = ( rating ) => {
     this.rating = rating;
 };
 
-movieSchema.methods.editMovie = function( body ) {
+movieSchema.methods.editMovie = ( body ) => {
     const { title, director, picture, releaseDate, description, categories, cast } = body;
-    
-        this.title = title;
-        this.director = director;
-        this.releaseDate = releaseDate;
-        this.description = description;
-        this.picture = picture;
-        this.categories = categories;
-        this.cast = cast;
-}
+    this.title = title;
+    this.director = director;
+    this.releaseDate = releaseDate;
+    this.description = description;
+    this.picture = picture;
+    this.categories = categories;
+    this.cast = cast;
+};
 
 module.exports = mongoose.model( "Movie", movieSchema );

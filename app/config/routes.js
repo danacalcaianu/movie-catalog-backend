@@ -30,8 +30,7 @@ const router = express.Router( );
 */
 router.post( "/users/registration",
     checkExistingModel( "username", "User", "user" ),
-    usersController.register,
-);
+    usersController.register );
 
 /**
 *    @apiGroup User
@@ -48,8 +47,7 @@ router.post( "/users/registration",
 */
 router.post( "/users/login",
     checkExistingModel( "username", "User", "user" ),
-    usersController.login,
-);
+    usersController.login );
 
 /**
 *    @apiGroup User
@@ -61,8 +59,7 @@ router.post( "/users/login",
 router.put( "/users/:userId/edit",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    usersController.edit,
-);
+    usersController.edit );
 
 /**
 *    @apiGroup User
@@ -76,8 +73,7 @@ router.put( "/users/:userId/edit",
 router.delete( "/users/:userId/deleteProfile",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    usersController.delete,
-);
+    usersController.delete );
 
 /**
 *    @apiGroup User
@@ -97,19 +93,32 @@ router.post( "/users/:userId/addMovie",
 *    @apiGroup User
 *    @api {put} /users/:userId/rateMovie/:movieId Rate a movie.
 */
-router.put( "/users/:userId/rateMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.rateMovie );
+router.put( "/users/:userId/rateMovie/:movieId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    checkExistingModel( "movieId", "Movie", "movie" ),
+    usersController.rateMovie );
 
 /**
 *    @apiGroup User
 *    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
 */
-router.put( "/users/:userId/reviewMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.reviewMovie );
+router.put( "/users/:userId/reviewMovie/:movieId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    checkExistingModel( "movieId", "Movie", "movie" ),
+    usersController.reviewMovie );
 
 /**
 *    @apiGroup User
-*    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
+*    @api {put} /users/:userId/editMovie/:movieId Edit a movie.
 */
-router.put( "/users/:userId/editMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), checkOwnership( ), usersController.editMovie );
+router.put( "/users/:userId/editMovie/:movieId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    checkExistingModel( "movieId", "Movie", "movie" ),
+    checkOwnership( ),
+    usersController.editMovie );
 
 /**
 *    @apiGroup Movie
@@ -117,14 +126,18 @@ router.put( "/users/:userId/editMovie/:movieId", checkExistingModel( "userId", "
 *    @apiParam {String} id  Movie ID required.
 *    @apiSampleRequest http://localhost:3030/movies/1223frhs/getMovie
 */
-router.get( "/movies/:movieId/getMovie", checkExistingModel( "movieId", "Movie", "movie" ), moviesController.getMovie );
+router.get( "/movies/:movieId/getMovie",
+    checkExistingModel( "movieId", "Movie", "movie" ),
+    moviesController.getMovie );
 
 /**
 *    @apiGroup Movie
 *    @api {get} /movies/getAll/:param Get all movies.
 *    @apiDescription returns all movies if param is missing, otherwise filters by param value (rating, categories)
 */
-router.get( "/movies/getAll/:param?", checkRequestParameter, moviesController.getAllMovies );
+router.get( "/movies/getAll/:param?",
+    checkRequestParameter,
+    moviesController.getAllMovies );
 
 /**
 *    @apiGroup Admin
@@ -142,7 +155,9 @@ router.get( "/movies/getAll/:param?", checkRequestParameter, moviesController.ge
 *           }
 *      }
 */
-router.post( "/admins/registration", checkExistingModel( "username", "Admin", "admin" ), usersController.register );
+router.post( "/admins/registration",
+    checkExistingModel( "username", "Admin", "admin" ),
+    usersController.register );
 
 /**
 *    @apiGroup Admin
@@ -157,7 +172,9 @@ router.post( "/admins/registration", checkExistingModel( "username", "Admin", "a
 *           }
 *      }
 */
-router.post( "/admins/login", checkExistingModel( "username", "Admin", "admin" ), usersController.login );
+router.post( "/admins/login",
+    checkExistingModel( "username", "Admin", "admin" ),
+    usersController.login );
 
 /**
 *    @apiGroup Admin
@@ -166,7 +183,10 @@ router.post( "/admins/login", checkExistingModel( "username", "Admin", "admin" )
 *    @apiParam {String} id  Admin ID required.
 *    @apiParam {String} password  Mandatory password.
 */
-router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, adminsController.edit );
+router.put( "/admins/:adminId/edit",
+    checkExistingModel( "adminId", "Admin", "admin" ),
+    validateToken,
+    adminsController.edit );
 
 /**
 *    @apiGroup Admin
@@ -177,8 +197,10 @@ router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "ad
 *           id:123456789
 *       }
 */
-// router.delete( "/admins/:adminId/deleteProfile", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, adminsController.delete );
-
+// router.delete( "/admins/:adminId/deleteProfile",
+//      checkExistingModel( "adminId", "Admin", "admin" ),
+//      validateToken,
+//      adminsController.delete );
 
 /**
 *    @apiGroup Admin
@@ -210,8 +232,7 @@ router.put( "/admins/:adminId/block/:userId",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
     checkExistingModel( "userId", "User", "user" ),
-    adminsController.blockUser,
-);
+    adminsController.blockUser );
 
 /**
 *    @apiGroup Admin

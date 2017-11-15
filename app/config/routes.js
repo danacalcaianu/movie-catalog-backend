@@ -3,6 +3,7 @@ const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
+const checkOwnership = require( "../middlewares/checkOwnership" );
 const express = require( "express" );
 
 const router = express.Router( );
@@ -87,7 +88,7 @@ router.put( "/users/:userId/reviewMovie/:movieId", checkExistingModel( "userId",
 *    @apiGroup User
 *    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
 */
-// router.put( "/users/:userId/deleteReview/:reviewId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.reviewMovie );
+router.put( "/users/:userId/editMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), checkOwnership( ), usersController.editMovie );
 
 /**
 *    @apiGroup Movie

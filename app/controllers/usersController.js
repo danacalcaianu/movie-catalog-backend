@@ -114,3 +114,10 @@ exports.reviewMovie = ( req, res ) => {
     movie.save();
     return res.success( movie );
 };
+
+exports.editMovie = ( req, res ) => {
+    const movie = req.movie;
+    movie.title = req.body.title;
+    movie.save();
+    return res.success( );
+};

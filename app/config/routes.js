@@ -5,6 +5,7 @@ const adminsController = require( "../controllers/adminsController" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
+const checkReviewExistence = require( "../middlewares/checkReviewExistence" );
 
 const express = require( "express" );
 
@@ -72,7 +73,10 @@ router.delete( "/users/:userId/deleteProfile", checkExistingModel( "userId", "Us
 *           id:123456789
 *       }
 */
-router.post( "/users/:userId/addMovie", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.addMovie );
+router.post( "/users/:userId/addMovie",
+    checkExistingModel( "userId", "User", "user" ),
+    checkExistingModel( "title", "Movie", "movie" ),
+    usersController.addMovie );
 
 /**
 *    @apiGroup Movie
@@ -140,7 +144,7 @@ router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "ad
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/deleteProfile", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, adminsController.delete );
+// router.delete( "/admins/:adminId/deleteProfile", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, adminsController.delete );
 
 /**
 *    @apiGroup Admin
@@ -151,12 +155,12 @@ router.delete( "/admins/:adminId/deleteProfile", checkExistingModel( "adminId", 
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/deleteMovie/:movieId",
-    checkExistingModel( "adminId", "Admin", "admin" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    adminsController.deleteMovie,
-);
+// router.delete( "/admins/:adminId/deleteMovie/:movieId",
+//     checkExistingModel( "adminId", "Admin", "admin" ),
+//     validateToken,
+//     checkExistingModel( "movieId", "Movie", "movie" ),
+//     adminsController.deleteMovie,
+// );
 
 /**
 *    @apiGroup Admin
@@ -185,12 +189,12 @@ router.put( "/admins/:adminId/block/:userId",
 *           id:123456789
 *       }
 */
-router.put( "/admins/:adminId/deleteReview/:reviewId",
-    checkExistingModel( "adminId", "Admin", "admin" ),
-    validateToken,
-    checkExistingModel( "userId", "User", "user" ),
-    adminsController.blockUser,
-);
+// router.put( "/admins/:adminId/deleteReview/:reviewId",
+//     checkExistingModel( "adminId", "Admin", "admin" ),
+//     validateToken,
+//     checkReviewExistence,
+//     adminsController.removeReview,
+// );
 
 router.get( "/test", ( req, res ) => {
     res.json( { success: true } );

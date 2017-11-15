@@ -122,3 +122,20 @@ exports.blockUser = ( req, res ) => {
         ) );
     } );
 };
+
+exports.removeReview = ( req, res ) => {
+    const movie = req.movie;
+    const admin = req.admin;
+
+    movie.deleted = true;
+    movie.deletedBy = admin.id;
+    movie.save( ( err, savedMovie ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedMovie,
+            [ "id", "deleted", "deletedBy" ],
+        ) );
+    } );
+};

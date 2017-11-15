@@ -5,6 +5,7 @@ const jwt = require( "jsonwebtoken" );
 const Admin = mongoose.model( "Admin" );
 const SECRET = "superSuperSecret";
 
+/* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
     let admin = req.admin;
     if ( admin ) {

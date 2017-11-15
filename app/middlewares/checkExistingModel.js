@@ -1,7 +1,6 @@
 const mongoose = require( "mongoose" );
 
 module.exports = ( reqParameter, model, result ) => ( req, res, next ) => {
-    console.log( reqParameter );
     let property = reqParameter;
     const identifier = req.params[ reqParameter ] || req.body[ reqParameter ];
     if ( !identifier ) {

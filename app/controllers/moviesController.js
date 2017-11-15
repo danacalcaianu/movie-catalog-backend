@@ -9,13 +9,13 @@ exports.getMovie = ( req, res ) => {
     }
     return res.success( extractObject(
         movie,
-        [ "title", "description", "director", "categories", "cast", "rating", "releaseDate", "reviews", "picture" ],
+        [ "title", "description", "director", "categories",
+            "cast", "rating", "releaseDate", "reviews", "picture" ],
     ) );
 };
 
 exports.getAllMovies = ( req, res ) => {
     const field = req.body.field;
-    console.log( field );
     return Movie.find(
         field,
         ( err, results ) => {

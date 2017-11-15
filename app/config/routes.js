@@ -85,7 +85,7 @@ router.get( "/movies/:movieId/getMovie", checkExistingModel( "movieId", "Movie",
 /**
 *    @apiGroup Movie
 *    @api {get} /movies/getAll/:param Get all movies.
-*    @apiDescription returns all movies if param is missing, otherwise all movies based on the param value (rating, categories)
+*    @apiDescription returns all movies if param is missing, otherwise filters by param value (rating, categories)
 */
 router.get( "/movies/getAll/:param?", checkRequestParameter, moviesController.getAllMovies );
 

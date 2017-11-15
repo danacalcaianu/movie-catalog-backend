@@ -8,6 +8,7 @@ const User = mongoose.model( "User" );
 const Movie = mongoose.model( "Movie" );
 const SECRET = "superSuperSecret";
 
+/* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
     let user = req.user;
     const email = req.body.email;

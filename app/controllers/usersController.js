@@ -8,6 +8,7 @@ const User = mongoose.model( "User" );
 const Movie = mongoose.model( "Movie" );
 const SECRET = "superSuperSecret";
 
+/* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
     let user = req.user;
     const email = req.body.email;
@@ -17,13 +18,13 @@ exports.register = ( req, res ) => {
     user = new User( req.body );
     user.setId();
     user.setPass( req.body.password );
-    user.save( function( err, savedUser ) {
+    user.save( ( err, savedUser ) => {
         if ( err ) {
             return res.validationError( err );
         }
         return res.success( extractObject(
-                savedUser,
-                [ "id", "username" ] ) );
+            savedUser,
+            [ "id", "username" ] ) );
     } );
 };
 
@@ -52,19 +53,11 @@ exports.login = ( req, res ) => {
         success: true,
         token,
     } );
-
 };
 
 exports.edit = ( req, res ) => {
     const user = req.user;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const gender = req.body.gender;
-    const age = req.body.age;
-    const categories = req.body.categories;
-    const avatar = req.body.avatar;
-    const email = req.body.email;
-
+    const { firstName, lastName, gender, age, categories, avatar, email } = req.body;
     user.firstName = firstName;
     user.lastName = lastName;
     user.gender = gender;
@@ -73,7 +66,7 @@ exports.edit = ( req, res ) => {
     user.avatar = avatar;
     user.email = email;
 
-    user.save( function( err, savedUser ) {
+    user.save( ( err, savedUser ) => {
         if ( err ) {
             return res.validationError( err );
         }
@@ -91,11 +84,8 @@ exports.delete = ( req, res ) => {
 };
 
 exports.addMovie = ( req, res ) => {
-    // check if user exists (  middlewares )
     const user = req.user;
-    // check if movie exists (  middlewares )
     let movie = req.movie;
-    console.log(movie);
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
     }

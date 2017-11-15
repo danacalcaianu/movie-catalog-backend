@@ -1,6 +1,8 @@
 const mongoose = require( "mongoose" );
-const schema = mongoose.Schema;
-const uid = require ( "uid" );
+const bcrypt = require( "bcrypt-nodejs" );
+
+const Schema = mongoose.Schema;
+const uid = require( "uid" );
 
 const adminSchema = new Schema( {
     id: { type: String, required: true },
@@ -10,16 +12,16 @@ const adminSchema = new Schema( {
     lastName: { type: String, required: true },
     email: { type: String, required: true },
     avatar: { type: String },
-} ,{
+}, {
     timestamps: true,
 } );
 
-adminSchema.methods.setId = function() {
+adminSchema.methods.setId = () => {
     this.id = uid( 10 );
-}
+};
 
-adminSchema.methods.setPass = function( password ) {
+adminSchema.methods.setPass = ( password ) => {
     this.password = bcrypt.hashSync( password );
-}
+};
 
 module.exports = mongoose.model( "Admin", adminSchema );

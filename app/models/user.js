@@ -31,7 +31,19 @@ userSchema.methods.setPass = function( password ) {
 };
 
 userSchema.methods.setFullName = function( ) {
-    return `${this.firstName} ${this.lastName}`;
+    return `${ this.firstName } ${ this.lastName }`;
+};
+
+userSchema.methods.editUser = function( body ) {
+    const { firstName, lastName, gender, age, categories, avatar, email } = body;
+    
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.categories = categories;
+        this.avatar = avatar;
+        this.email = email;
 };
 
 module.exports = mongoose.model( "User", userSchema );

@@ -57,16 +57,7 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const user = req.user;
-    const { firstName, lastName, gender, age, categories, avatar, email } = req.body;
-
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.gender = gender;
-    user.age = age;
-    user.categories = categories;
-    user.avatar = avatar;
-    user.email = email;
-
+    user.editUser( req.body );
     user.save( function( err, savedUser ) {
         if ( err ) {
             return res.validationError( err );
@@ -79,25 +70,20 @@ exports.edit = ( req, res ) => {
 
 exports.delete = ( req, res ) => {
     const user = req.user;
-
     user.remove( );
     res.success( );
 };
 
 exports.addMovie = ( req, res ) => {
-    // check if user exists (  middlewares )
     const user = req.user;
-    // check if movie exists (  middlewares )
     let movie = req.movie;
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
     }
-
     movie = new Movie( req.body );
     movie.addOwner( user.id );
     movie.addId( );
     movie.save( );
-
     return res.success( movie );
 };
 
@@ -119,5 +105,5 @@ exports.editMovie = ( req, res ) => {
     const movie = req.movie;
     movie.editMovie( req.body );
     movie.save();
-    return res.success( );
+    return res.success( movie );
 };

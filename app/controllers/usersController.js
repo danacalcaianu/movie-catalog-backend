@@ -57,16 +57,8 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const user = req.user;
-    const { firstName, lastName, gender, age, categories, avatar, email } = req.body;
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.gender = gender;
-    user.age = age;
-    user.categories = categories;
-    user.avatar = avatar;
-    user.email = email;
-
-    user.save( ( err, savedUser ) => {
+    user.editUser( req.body );
+    user.save( function( err, savedUser ) {
         if ( err ) {
             return res.validationError( err );
         }
@@ -78,7 +70,6 @@ exports.edit = ( req, res ) => {
 
 exports.delete = ( req, res ) => {
     const user = req.user;
-
     user.remove( );
     res.success( );
 };
@@ -89,11 +80,31 @@ exports.addMovie = ( req, res ) => {
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
     }
-
     movie = new Movie( req.body );
 
     movie.addOwner( user.id );
     movie.addId( );
+    movie.save( );
+    return res.success( movie );
+};
+
+exports.rateMovie = ( req, res ) => {
+    const movie = req.movie;
+    movie.addRating( req.body.rating );
+    movie.save();
+    return res.success( movie );
+};
+
+exports.reviewMovie = ( req, res ) => {
+    const movie = req.movie;
+    movie.addReview( req.body, req.user );
+    movie.save();
+    return res.success( movie );
+};
+
+exports.editMovie = ( req, res ) => {
+    const movie = req.movie;
+    movie.editMovie( req.body );
     movie.save( ( err, result ) => {
         if ( err ) {
             return res.validationError( err );

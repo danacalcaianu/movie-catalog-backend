@@ -1,6 +1,7 @@
 const errorsController = require( "../controllers/errorsController" );
 const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
+const checkOwnership = require( "../middlewares/checkOwnership" );
 const adminsController = require( "../controllers/adminsController" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
@@ -79,6 +80,24 @@ router.post( "/users/:userId/addMovie",
     usersController.addMovie );
 
 /**
+*    @apiGroup User
+*    @api {put} /users/:userId/rateMovie/:movieId Rate a movie.
+*/
+router.put( "/users/:userId/rateMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.rateMovie );
+
+/**
+*    @apiGroup User
+*    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
+*/
+router.put( "/users/:userId/reviewMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), usersController.reviewMovie );
+
+/**
+*    @apiGroup User
+*    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
+*/
+router.put( "/users/:userId/editMovie/:movieId", checkExistingModel( "userId", "User", "user" ), validateToken, checkExistingModel( "movieId", "Movie", "movie" ), checkOwnership( ), usersController.editMovie );
+
+/**
 *    @apiGroup Movie
 *    @api {get} /movies/:movieId/getMovie Get a movie.
 *    @apiParam {String} id  Movie ID required.
@@ -145,6 +164,7 @@ router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "ad
 *       }
 */
 // router.delete( "/admins/:adminId/deleteProfile", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, adminsController.delete );
+
 
 /**
 *    @apiGroup Admin

@@ -70,7 +70,8 @@ exports.edit = ( req, res ) => {
 
 exports.delete = ( req, res ) => {
     const user = req.user;
-    user.remove( );
+    user.deleted = true;
+    user.save();
     res.success( );
 };
 

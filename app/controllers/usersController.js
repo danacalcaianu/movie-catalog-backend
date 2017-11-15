@@ -117,7 +117,7 @@ exports.reviewMovie = ( req, res ) => {
 
 exports.editMovie = ( req, res ) => {
     const movie = req.movie;
-    movie.title = req.body.title;
+    movie.editMovie( req.body );
     movie.save();
     return res.success( );
 };

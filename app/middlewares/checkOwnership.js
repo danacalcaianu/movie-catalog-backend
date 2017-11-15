@@ -1,6 +1,6 @@
 const mongoose = require( "mongoose" );
 
-module.exports = ( user, movie ) => ( req, res, next ) => {
+module.exports = ( ) => ( req, res, next ) => {
     const movieId = req.params.movieId;
     const userId = req.params.userId;
     const Collection = mongoose.model( "Movie" );

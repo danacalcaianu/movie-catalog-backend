@@ -1,7 +1,7 @@
 const errorsController = require( "../controllers/errorsController" );
 const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
-
+const adminsController = require( "../controllers/adminsController" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
@@ -129,26 +129,76 @@ router.post( "/admins/login", checkExistingModel( "username", "Admin", "admin" )
 *    @apiParam {String} id  Admin ID required.
 *    @apiParam {String} password  Mandatory password.
 */
-router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, usersController.edit );
+router.put( "/admins/:adminId/edit", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, adminsController.edit );
 
 /**
 *    @apiGroup Admin
-*    @api {delete} /admins/:adminId/adminProfile Delete an admin.
-*    @apiParam {String} id Admin ID required.
+*    @api {delete} /admins/:adminId/deleteProfile Delete an admin.
+*    @apiParam {String} adminId Admin ID required.
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/delete", checkExistingModel( "adminId", "Admin", "user" ), validateToken, usersController.delete );
+router.delete( "/admins/:adminId/deleteProfile", checkExistingModel( "adminId", "Admin", "admin" ), validateToken, adminsController.delete );
 
-router.get( "/test", function( req, res ) {
+/**
+*    @apiGroup Admin
+*    @api {delete} /admins/:adminId/deleteMovie/:movieId Delete a movie from an admin profile.
+*    @apiParam {String} adminId Admin ID required.
+*    @apiHeaderExample Example header
+*       {
+*           id:123456789
+*       }
+*/
+router.delete( "/admins/:adminId/deleteMovie/:movieId",
+    checkExistingModel( "adminId", "Admin", "admin" ),
+    validateToken,
+    checkExistingModel( "movieId", "Movie", "movie" ),
+    adminsController.deleteMovie,
+);
+
+/**
+*    @apiGroup Admin
+*    @api {delete} /admins/:adminId/block/:userId Block a user from an admin profile.
+*    @apiParam {String} adminId Admin ID required.
+*    @apiParam {String} userId User ID required.
+*    @apiHeaderExample Example header
+*       {
+*           id:123456789
+*       }
+*/
+router.put( "/admins/:adminId/block/:userId",
+    checkExistingModel( "adminId", "Admin", "admin" ),
+    validateToken,
+    checkExistingModel( "userId", "User", "user" ),
+    adminsController.blockUser,
+);
+
+/**
+*    @apiGroup Admin
+*    @api {delete} /admins/:adminId/deleteReview/:reviewId Block a user from an admin profile.
+*    @apiParam {String} adminId Admin ID required.
+*    @apiParam {String} userId User ID required.
+*    @apiHeaderExample Example header
+*       {
+*           id:123456789
+*       }
+*/
+router.put( "/admins/:adminId/deleteReview/:reviewId",
+    checkExistingModel( "adminId", "Admin", "admin" ),
+    validateToken,
+    checkExistingModel( "userId", "User", "user" ),
+    adminsController.blockUser,
+);
+
+router.get( "/test", ( req, res ) => {
     res.json( { success: true } );
 } );
 
 router.use( errorsController.notFound );
 
-module.exports = function( app ) {
+module.exports = ( app ) => {
     app.use( "/", router );
     app.use( errorsController.errorLogger );
     app.use( errorsController.errorHandler );

@@ -28,7 +28,10 @@ const router = express.Router( );
 *           }
 *      }
 */
-router.post( "/users/registration", checkExistingModel( "username", "User", "user" ), usersController.register );
+router.post( "/users/registration",
+    checkExistingModel( "username", "User", "user" ),
+    usersController.register,
+);
 
 /**
 *    @apiGroup User
@@ -43,7 +46,10 @@ router.post( "/users/registration", checkExistingModel( "username", "User", "use
 *
 *      }
 */
-router.post( "/users/login", checkExistingModel( "username", "User", "user" ), usersController.login );
+router.post( "/users/login",
+    checkExistingModel( "username", "User", "user" ),
+    usersController.login,
+);
 
 /**
 *    @apiGroup User
@@ -52,7 +58,11 @@ router.post( "/users/login", checkExistingModel( "username", "User", "user" ), u
 *    @apiParam {String} id  User ID required.
 *    @apiParam {String} password  Mandatory password.
 */
-router.put( "/users/:userId/edit", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.edit );
+router.put( "/users/:userId/edit",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    usersController.edit,
+);
 
 /**
 *    @apiGroup User
@@ -63,7 +73,11 @@ router.put( "/users/:userId/edit", checkExistingModel( "userId", "User", "user" 
 *           id:123456789
 *       }
 */
-router.delete( "/users/:userId/deleteProfile", checkExistingModel( "userId", "User", "user" ), validateToken, usersController.delete );
+router.delete( "/users/:userId/deleteProfile",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    usersController.delete,
+);
 
 /**
 *    @apiGroup User

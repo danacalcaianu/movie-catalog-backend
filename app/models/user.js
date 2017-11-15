@@ -13,7 +13,10 @@ const userSchema = new Schema( {
     email: { type: String, required: true },
     age: { type: Number },
     gender: { type: String, enum: [ "male", "female" ] },
-    categories: [ { type: String, enum: [ "action", "comedy", "drama", "horror", "Sci-Fi", "romance" ] } ],
+    categories: [ {
+        type: String,
+        enum: [ "action", "comedy", "drama", "horror", "Sci-Fi", "romance" ],
+    } ],
     avatar: { type: String },
     deleted: { type: Boolean, default: false },
     blockedBy: { type: String },
@@ -22,13 +25,14 @@ const userSchema = new Schema( {
     timestamps: true,
 } );
 
-userSchema.methods.setId = function() {
+userSchema.methods.setId = () => {
     this.id = uid( 10 );
 };
 
-userSchema.methods.setPass = function( password ) {
+userSchema.methods.setPass = ( password ) => {
     this.password = bcrypt.hashSync( password );
 };
+
 
 userSchema.methods.setFullName = function( ) {
     return `${ this.firstName } ${ this.lastName }`;

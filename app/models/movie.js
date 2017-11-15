@@ -42,28 +42,33 @@ const movieSchema = new Schema( {
     reviews: { type: [ reviewSchema ], default: [ ] },
 } );
 
-movieSchema.methods.create = function( data ) {
+movieSchema.methods.createMovie = ( data ) => {
+    console.log( "data", data );
+    console.log( "this", this );
+
     this.title = data.title;
     this.description = data.description;
     this.categories = data.categories;
+    return this;
 };
 
-movieSchema.methods.addReview = function ( body, user ) {
+movieSchema.methods.addReview = ( body, author ) => {
+    const { title, description, rating } = body;
     const review = {
-        title: body.title,
-        description: body.description,
-        author: user.setFullName(),
-        rating: body.rating,
+        title,
+        description,
+        rating,
+        author,
         id: uid( 10 ),
     };
     return this.reviews.push( review );
 };
 
-movieSchema.methods.addOwner = function( userId ) {
+movieSchema.methods.addOwner = ( userId ) => {
     this.addedBy = userId;
 };
 
-movieSchema.methods.addId = function( ) {
+movieSchema.methods.addId = ( ) => {
     this.id = uid( 10 );
 };
 

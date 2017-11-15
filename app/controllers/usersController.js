@@ -8,6 +8,7 @@ const User = mongoose.model( "User" );
 const Movie = mongoose.model( "Movie" );
 const SECRET = "superSuperSecret";
 
+/* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
     let user = req.user;
     const email = req.body.email;
@@ -17,13 +18,13 @@ exports.register = ( req, res ) => {
     user = new User( req.body );
     user.setId();
     user.setPass( req.body.password );
-    user.save( function( err, savedUser ) {
+    user.save( ( err, savedUser ) => {
         if ( err ) {
             return res.validationError( err );
         }
         return res.success( extractObject(
-                savedUser,
-                [ "id", "username" ] ) );
+            savedUser,
+            [ "id", "username" ] ) );
     } );
 };
 
@@ -52,7 +53,6 @@ exports.login = ( req, res ) => {
         success: true,
         token,
     } );
-
 };
 
 exports.edit = ( req, res ) => {
@@ -81,6 +81,7 @@ exports.addMovie = ( req, res ) => {
         return res.preconditionFailed( "existing_movie" );
     }
     movie = new Movie( req.body );
+
     movie.addOwner( user.id );
     movie.addId( );
     movie.save( );
@@ -104,6 +105,10 @@ exports.reviewMovie = ( req, res ) => {
 exports.editMovie = ( req, res ) => {
     const movie = req.movie;
     movie.editMovie( req.body );
-    movie.save();
-    return res.success( movie );
+    movie.save( ( err, result ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( result );
+    } );
 };

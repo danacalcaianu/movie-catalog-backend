@@ -5,6 +5,7 @@ const jwt = require( "jsonwebtoken" );
 const Admin = mongoose.model( "Admin" );
 const SECRET = "superSuperSecret";
 
+/* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
     let admin = req.admin;
     if ( admin ) {
@@ -12,13 +13,13 @@ exports.register = ( req, res ) => {
     }
     admin = new Admin( req.body );
     admin.setPass( req.body.password );
-    admin.save( function( err, savedAdmin ) {
+    admin.save( ( err, savedAdmin ) => {
         if ( err ) {
             return res.validationError( err );
         }
         return res.success( extractObject(
-                savedAdmin,
-                [ "id", "username" ] ) );
+            savedAdmin,
+            [ "id", "username" ] ) );
     } );
 };
 
@@ -52,17 +53,14 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const admin = req.admin;
-    const email = req.body.email;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const avatar = req.body.avatar;
+    const { email, firstName, lastName, avatar } = req.body;
 
     admin.email = email;
     admin.firstName = firstName;
     admin.lastName = lastName;
     admin.avatar = avatar;
 
-    admin.save( function( err, savedAdmin ) {
+    admin.save( ( err, savedAdmin ) => {
         if ( err ) {
             return res.validationError( err );
         }
@@ -72,9 +70,72 @@ exports.edit = ( req, res ) => {
     } );
 };
 
-exports.delete = ( req, res ) => {
+exports.deleteProfile = ( req, res ) => {
     const admin = req.admin;
 
-    admin.remove( );
+    admin.deleted = true;
+    admin.save( ( err, savedAdmin ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedAdmin,
+            [ "id", "deleted" ],
+        ) );
+    } );
     res.success( );
+};
+
+exports.deleteMovie = ( req, res ) => {
+    const movie = req.movie;
+    const admin = req.admin;
+
+    movie.deleted = true;
+    movie.deletedBy = admin.id;
+    movie.save( ( err, savedMovie ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedMovie,
+            [ "id", "deleted", "deletedBy" ],
+        ) );
+    } );
+};
+
+exports.blockUser = ( req, res ) => {
+    const user = req.user;
+    const admin = req.admin;
+    const blockedReason = req.blockEDReason;
+
+    user.blocked = true;
+    user.blockedBy = admin.id;
+    user.blockedReason = blockedReason;
+
+    user.save( ( err, savedUser ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedUser,
+            [ "id", "blocked", "blockedBy", "blockedReason" ],
+        ) );
+    } );
+};
+
+exports.removeReview = ( req, res ) => {
+    const movie = req.movie;
+    const admin = req.admin;
+
+    movie.deleted = true;
+    movie.deletedBy = admin.id;
+    movie.save( ( err, savedMovie ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedMovie,
+            [ "id", "deleted", "deletedBy" ],
+        ) );
+    } );
 };

@@ -70,9 +70,72 @@ exports.edit = ( req, res ) => {
     } );
 };
 
-exports.delete = ( req, res ) => {
+exports.deleteProfile = ( req, res ) => {
     const admin = req.admin;
 
-    admin.remove( );
+    admin.deleted = true;
+    admin.save( ( err, savedAdmin ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedAdmin,
+            [ "id", "deleted" ],
+        ) );
+    } );
     res.success( );
+};
+
+exports.deleteMovie = ( req, res ) => {
+    const movie = req.movie;
+    const admin = req.admin;
+
+    movie.deleted = true;
+    movie.deletedBy = admin.id;
+    movie.save( ( err, savedMovie ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedMovie,
+            [ "id", "deleted", "deletedBy" ],
+        ) );
+    } );
+};
+
+exports.blockUser = ( req, res ) => {
+    const user = req.user;
+    const admin = req.admin;
+    const blockedReason = req.blockEDReason;
+
+    user.blocked = true;
+    user.blockedBy = admin.id;
+    user.blockedReason = blockedReason;
+
+    user.save( ( err, savedUser ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedUser,
+            [ "id", "blocked", "blockedBy", "blockedReason" ],
+        ) );
+    } );
+};
+
+exports.removeReview = ( req, res ) => {
+    const movie = req.movie;
+    const admin = req.admin;
+
+    movie.deleted = true;
+    movie.deletedBy = admin.id;
+    movie.save( ( err, savedMovie ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( extractObject(
+            savedMovie,
+            [ "id", "deleted", "deletedBy" ],
+        ) );
+    } );
 };

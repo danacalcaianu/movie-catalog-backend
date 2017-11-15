@@ -91,9 +91,13 @@ exports.addMovie = ( req, res ) => {
     }
 
     movie = new Movie( req.body );
+
     movie.addOwner( user.id );
     movie.addId( );
-    movie.save( );
-
-    return res.success( movie );
+    movie.save( ( err, result ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( result );
+    } );
 };

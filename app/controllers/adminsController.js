@@ -21,7 +21,7 @@ exports.register = ( req, res ) => {
         }
         return res.success( extractObject(
             savedAdmin,
-            [ "id", "adminname" ] ) );
+            [ "id", "username" ] ) );
     } );
 };
 
@@ -101,7 +101,7 @@ exports.deleteMovie = ( req, res ) => {
 exports.blockUser = ( req, res ) => {
     const admin = req.admin;
     const user = req.user;
-    const blockedReason = req.blockedReason;
+    const blockedReason = req.body.blockedReason;
 
     user.blocked = true;
     user.blockedBy = admin.id;
@@ -122,10 +122,11 @@ exports.removeReview = ( req, res ) => {
     const movie = req.movie;
     const reviewId = req.params.reviewId;
 
-    const reviewIndex = movie.getReviewIndex( reviewId );
-    if ( reviewIndex === -1 ) {
+    if ( !movie ) {
         return res.notFound();
     }
+
+    const reviewIndex = movie.getReviewIndex( reviewId );
     movie.removeReview( reviewIndex );
     movie.save( ( err, updatedMovie ) => {
         if ( err ) {

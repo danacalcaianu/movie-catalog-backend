@@ -54,9 +54,7 @@ exports.edit = ( req, res ) => {
         if ( err ) {
             return res.validationError( err );
         }
-        return res.success( extractObject(
-            savedUser,
-            [ "id", "name", "age", "sex" ] ) );
+        return res.success( savedUser );
     } );
 };
 
@@ -107,6 +105,7 @@ exports.editMovie = ( req, res ) => {
     } );
 };
 
+
 exports.removeReview = ( req, res ) => {
     const movie = req.movie;
     const user = req.user;
@@ -124,5 +123,22 @@ exports.removeReview = ( req, res ) => {
             return res.validationError( err );
         }
         return res.success( updatedMovie );
+    } );
+};
+exports.markReviewAsSpam = ( req, res ) => {
+    const movie = req.movie;
+    const reviewId = req.params.reviewId;
+
+    if ( !movie ) {
+        return res.notFound();
+    }
+
+    const reviewIndex = movie.getReviewIndex( reviewId );
+    movie.spamReview( reviewIndex );
+    movie.save( ( err, result ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( result );
     } );
 };

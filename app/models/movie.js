@@ -104,4 +104,8 @@ movieSchema.methods.editMovie = function( body ) {
     this.cast = cast;
 };
 
+movieSchema.methods.spamReview = function( reviewIndex ) {
+    const review = this.reviews[ reviewIndex ];
+    review.markedAsSpam = true;
+};
 module.exports = mongoose.model( "Movie", movieSchema );

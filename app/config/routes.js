@@ -78,7 +78,7 @@ router.put( "/users/:userId/edit",
 *           id:123456789
 *       }
 */
-router.delete( "/users/:userId/deleteProfile",
+router.put( "/users/:userId/deleteProfile",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     usersController.delete );
@@ -128,6 +128,17 @@ router.put( "/users/:userId/editMovie/:movieId",
     checkExistingModel( "movieId", "Movie", "movie" ),
     checkOwnership( ),
     usersController.editMovie );
+
+/**
+*    @apiGroup User
+*    @api {put} /users/:userId/editMovie/:movieId Edit a movie.
+*/
+router.delete( "/users/:userId/removeReview/:reviewId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    getMovieForReview,
+    usersController.removeReview,
+);
 
 /**
 *    @apiGroup Movie
@@ -209,7 +220,7 @@ router.put( "/admins/:adminId/edit",
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/deleteProfile",
+router.put( "/admins/:adminId/deleteProfile",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
     adminsController.deleteProfile );

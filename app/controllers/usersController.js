@@ -106,3 +106,23 @@ exports.editMovie = ( req, res ) => {
         return res.success( result );
     } );
 };
+
+exports.removeReview = ( req, res ) => {
+    const movie = req.movie;
+    const user = req.user;
+    const reviewId = req.params.reviewId;
+    if ( !movie ) {
+        return res.notFound();
+    }
+    const reviewIndex = movie.getReviewIndex( reviewId );
+    if ( movie.reviews[ reviewIndex ].author !== user.username ) {
+        return res.unauthorized();
+    }
+    movie.removeReview( reviewIndex );
+    movie.save( ( err, updatedMovie ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( updatedMovie );
+    } );
+};

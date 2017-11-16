@@ -33,9 +33,10 @@ const router = express.Router( );
 *      }
 */
 router.post( "/users/registration",
+    checkEmailFormat(),
     checkExistingModel( "username", "User", "user" ),
     checkEmailExists( "User" ),
-    checkEmailFormat(),
+    checkEmailExists( "Admin" ),
     usersController.register );
 
 /**
@@ -165,6 +166,7 @@ router.get( "/movies/getAll/:param?",
 */
 router.post( "/admins/registration",
     checkEmailExists( "User" ),
+    checkEmailExists( "Admin" ),
     checkEmailFormat(),
     checkExistingModel( "username", "Admin", "admin" ),
     adminsController.register );

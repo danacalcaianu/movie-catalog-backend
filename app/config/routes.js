@@ -84,7 +84,7 @@ router.delete( "/users/:userId/deleteProfile",
 *           id:123456789
 *       }
 */
-router.post( "/users/:userId/addMovie",
+router.put( "/users/:userId/addMovie",
     checkExistingModel( "userId", "User", "user" ),
     checkExistingModel( "title", "Movie", "movie" ),
     usersController.addMovie );

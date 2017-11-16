@@ -77,7 +77,7 @@ router.put( "/users/:userId/edit",
 *           id:123456789
 *       }
 */
-router.delete( "/users/:userId/deleteProfile",
+router.put( "/users/:userId/deleteProfile",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     usersController.delete );
@@ -129,6 +129,17 @@ router.put( "/users/:userId/editMovie/:movieId",
     usersController.editMovie );
 
 /**
+
+*    @apiGroup User
+*    @api {put} /users/:userId/removeReview/:reviewId remove a review.
+*/
+router.delete( "/users/:userId/removeReview/:reviewId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    getMovieForReview,
+    usersController.removeReview,
+);
+
     *    @apiGroup User
     *    @api {put} /users/:userId/spamReview/:reviewId Mark a review as spam.
     */
@@ -137,6 +148,7 @@ router.put( "/users/:userId/spamReview/:reviewId",
     validateToken,
     getMovieForReview,
     usersController.markReviewAsSpam );
+
 
 /**
 *    @apiGroup Movie
@@ -219,7 +231,7 @@ router.put( "/admins/:adminId/edit",
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/deleteProfile",
+router.put( "/admins/:adminId/deleteProfile",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
     adminsController.deleteProfile );

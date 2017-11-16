@@ -7,6 +7,7 @@ const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
 const checkReviewExistence = require( "../middlewares/checkReviewExistence" );
+const checkUserAccess = require( "../middlewares/checkUserAccess" );
 
 const express = require( "express" );
 
@@ -47,6 +48,7 @@ router.post( "/users/registration",
 */
 router.post( "/users/login",
     checkExistingModel( "username", "User", "user" ),
+    checkUserAccess(),
     usersController.login );
 
 /**

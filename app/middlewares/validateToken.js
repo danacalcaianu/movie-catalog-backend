@@ -6,6 +6,7 @@ const SECRET = "superSuperSecret";
 module.exports = ( req, res, next ) => {
     const token = req.body.token || req.query.token || req.headers[ "x-access-token" ];
     const person = req.user || req.admin;
+
     if ( token ) {
         jwt.verify( token, SECRET, ( err, decoded ) => {
             if ( err ) {

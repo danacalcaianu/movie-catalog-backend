@@ -12,7 +12,7 @@ const reviewSchema = new Schema( {
         type: Number,
         min: 0,
         max: 5,
-        default: 0,
+        required: true,
     },
     markedAsSpam: { type: Boolean, default: false },
 } );
@@ -62,6 +62,11 @@ movieSchema.methods.getReviewIndex = function( reviewId ) {
     return index;
 };
 
+movieSchema.methods.getReviewForIndex = function( reviewIndex ) {
+    const review = this.reviews[ reviewIndex ];
+    return review;
+};
+
 movieSchema.methods.removeReview = function( reviewIndex ) {
     this.reviews.splice( reviewIndex, 1 );
 };
@@ -74,19 +79,40 @@ movieSchema.methods.addId = function( ) {
     this.id = uid( 10 );
 };
 
-movieSchema.methods.addRating = function( rating ) {
-    this.rating.push( rating );
+movieSchema.methods.addRating = function( rating, author ) {
+    const newRating = {
+        rating,
+        owner: author,
+    };
+    this.ratings.push( newRating );
 };
 
-movieSchema.methods.updateRating = function() {
-    let total = 0;
-    let count = 0;
-    this.rating.forEach( function( element ) {
-        total += element;
-        count += 1;
-    } );
-    total /= count;
-    this.rating = total;
+movieSchema.methods.updateRating = function ( newRating, index ) {
+    const currentRating = this.ratings[ index ];
+    currentRating.rating = newRating;
+};
+
+movieSchema.methods.getRatingIndex = function( owner ) {
+    const index = this.ratings.map( rating => rating.owner ).indexOf( owner );
+    return index;
+};
+
+movieSchema.methods.deleteRating = function ( ratingIndex ) {
+    this.ratings.splice( ratingIndex, 1 );
+};
+
+movieSchema.methods.updateRatingAverage = function() {
+    let average = 0;
+    if ( this.ratings.length === 0 ) {
+        this.averageRating = 0;
+        return;
+    }
+    const total = this.ratings
+        .map( ( object ) => object.rating )
+        .reduce( ( acc, current ) => acc + current, 0 );
+
+    average = total / this.ratings.length;
+    this.averageRating = average.toFixed( 2 );
 };
 
 movieSchema.methods.editMovie = function( body ) {

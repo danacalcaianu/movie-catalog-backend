@@ -2,6 +2,8 @@ const mongoose = require( "mongoose" );
 const extractObject = require( "../utilities" ).extractObject;
 const jwt = require( "jsonwebtoken" );
 const bcrypt = require( "bcrypt-nodejs" );
+const updateRating = require( "../utilities/index" ).updateRating;
+const saveChangesToModel = require( "../utilities/index" ).saveChangesToModel;
 
 const User = mongoose.model( "User" );
 const Movie = mongoose.model( "Movie" );
@@ -50,12 +52,7 @@ exports.login = ( req, res ) => {
 exports.edit = ( req, res ) => {
     const user = req.user;
     user.editUser( req.body );
-    user.save( ( err, savedUser ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( savedUser );
-    } );
+    saveChangesToModel( res, user );
 };
 
 exports.delete = ( req, res ) => {
@@ -89,40 +86,40 @@ exports.rateMovie = ( req, res ) => {
 
 exports.reviewMovie = ( req, res ) => {
     const movie = req.movie;
-    movie.addReview( req.body, req.user.username );
+    const { username } = req.user;
+
+    movie.addReview( req.body, username );
+    updateRating( movie, req.body.rating, username );
     movie.save();
+
     return res.success( movie );
 };
 
 exports.editMovie = ( req, res ) => {
     const movie = req.movie;
     movie.editMovie( req.body );
-    movie.save( ( err, result ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( result );
-    } );
+    saveChangesToModel( res, movie );
 };
 
 exports.removeReview = ( req, res ) => {
     const movie = req.movie;
-    const user = req.user;
+    const { username } = req.user;
     const reviewId = req.params.reviewId;
+
     if ( !movie ) {
         return res.notFound();
     }
     const reviewIndex = movie.getReviewIndex( reviewId );
-    if ( movie.reviews[ reviewIndex ].author !== user.username ) {
+    if ( movie.reviews[ reviewIndex ].author !== username ) {
         return res.unauthorized();
     }
     movie.removeReview( reviewIndex );
-    movie.save( ( err, updatedMovie ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( updatedMovie );
-    } );
+
+    const ratingIndex = movie.getRatingIndex( username );
+    movie.deleteRating( ratingIndex );
+    movie.updateRatingAverage();
+
+    saveChangesToModel( res, movie );
 };
 exports.markReviewAsSpam = ( req, res ) => {
     const movie = req.movie;
@@ -134,10 +131,5 @@ exports.markReviewAsSpam = ( req, res ) => {
 
     const reviewIndex = movie.getReviewIndex( reviewId );
     movie.spamReview( reviewIndex );
-    movie.save( ( err, result ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( result );
-    } );
+    saveChangesToModel( res, movie );
 };

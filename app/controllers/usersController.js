@@ -105,7 +105,6 @@ exports.editMovie = ( req, res ) => {
     } );
 };
 
-
 exports.removeReview = ( req, res ) => {
     const movie = req.movie;
     const user = req.user;

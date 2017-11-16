@@ -29,12 +29,8 @@ const movieSchema = new Schema( {
     },
     releaseDate: Date,
     description: { type: String, required: true },
-    rating: [ {
-        type: Number,
-        min: 0,
-        max: 5,
-        default: [],
-    } ],
+    ratings: [ { rating: { type: Number, min: 0, max: 5 }, owner: String } ],
+    averageRating: Number,
     picture: String,
     addedBy: String, // userId / adminId
     deletedBy: String, // adminId

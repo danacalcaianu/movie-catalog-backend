@@ -11,7 +11,6 @@ const checkUserAccess = require( "../middlewares/checkUserAccess" );
 const checkEmailExists = require( "../middlewares/checkEmailExists" );
 const checkEmailFormat = require( "../middlewares/checkEmailFormat" );
 
-
 const express = require( "express" );
 
 const router = express.Router( );
@@ -130,6 +129,16 @@ router.put( "/users/:userId/editMovie/:movieId",
     usersController.editMovie );
 
 /**
+    *    @apiGroup User
+    *    @api {put} /users/:userId/spamReview/:reviewId Mark a review as spam.
+    */
+router.put( "/users/:userId/spamReview/:reviewId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    getMovieForReview,
+    usersController.markReviewAsSpam );
+
+/**
 *    @apiGroup Movie
 *    @api {get} /movies/:movieId/getMovie Get a movie.
 *    @apiParam {String} id  Movie ID required.
@@ -142,7 +151,8 @@ router.get( "/movies/:movieId/getMovie",
 /**
 *    @apiGroup Movie
 *    @api {get} /movies/getAll/:param Get all movies.
-*    @apiDescription returns all movies if param is missing, otherwise filters by param value (rating, categories)
+*    @apiDescription returns all movies if param is missing, otherwise
+*    filters by param value (rating, categories)
 */
 router.get( "/movies/getAll/:param?",
     checkRequestParameter,

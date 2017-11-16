@@ -54,9 +54,7 @@ exports.edit = ( req, res ) => {
         if ( err ) {
             return res.validationError( err );
         }
-        return res.success( extractObject(
-            savedUser,
-            [ "id", "name", "age", "sex" ] ) );
+        return res.success( savedUser );
     } );
 };
 
@@ -99,6 +97,24 @@ exports.reviewMovie = ( req, res ) => {
 exports.editMovie = ( req, res ) => {
     const movie = req.movie;
     movie.editMovie( req.body );
+    movie.save( ( err, result ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( result );
+    } );
+};
+
+exports.markReviewAsSpam = ( req, res ) => {
+    const movie = req.movie;
+    const reviewId = req.params.reviewId;
+
+    if ( !movie ) {
+        return res.notFound();
+    }
+
+    const reviewIndex = movie.getReviewIndex( reviewId );
+    movie.spamReview( reviewIndex );
     movie.save( ( err, result ) => {
         if ( err ) {
             return res.validationError( err );

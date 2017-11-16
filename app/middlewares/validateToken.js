@@ -5,7 +5,7 @@ const SECRET = "superSuperSecret";
 /* eslint consistent-return: "off" */
 module.exports = ( req, res, next ) => {
     const token = req.body.token || req.query.token || req.headers[ "x-access-token" ];
-    const id = req.user.id || req.admin.id;
+    const person = req.user || req.admin;
     if ( token ) {
         jwt.verify( token, SECRET, ( err, decoded ) => {
             if ( err ) {
@@ -15,7 +15,7 @@ module.exports = ( req, res, next ) => {
                 } );
             }
             req.decoded = decoded;
-            if ( id !== decoded.id ) {
+            if ( person.id !== decoded.id ) {
                 return res.unauthorized( );
             }
             return next( );

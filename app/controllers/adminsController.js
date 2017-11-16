@@ -1,6 +1,7 @@
 const mongoose = require( "mongoose" );
 const extractObject = require( "../utilities" ).extractObject;
 const jwt = require( "jsonwebtoken" );
+const bcrypt = require( "bcrypt-nodejs" );
 
 const Admin = mongoose.model( "Admin" );
 const SECRET = "superSuperSecret";
@@ -12,6 +13,7 @@ exports.register = ( req, res ) => {
         return res.preconditionFailed( "existing_admin" );
     }
     admin = new Admin( req.body );
+    admin.setId();
     admin.setPass( req.body.password );
     admin.save( ( err, savedAdmin ) => {
         if ( err ) {
@@ -19,7 +21,7 @@ exports.register = ( req, res ) => {
         }
         return res.success( extractObject(
             savedAdmin,
-            [ "id", "username" ] ) );
+            [ "id", "adminname" ] ) );
     } );
 };
 
@@ -29,25 +31,18 @@ exports.login = ( req, res ) => {
         res.status( 400 ).send( "password required" );
         return;
     }
+    const password = bcrypt.compareSync( req.body.password, admin.password );
 
-    const password = req.body.password;
-    if ( admin ) {
-        if ( admin.password !== password ) {
-            return res.json( {
-                success: false,
-                message: "Authentication failed. Wrong password.",
-            } );
-        }
-
-        const token = jwt.sign( admin.toObject(), SECRET, { expiresIn: 1440 } );
+    if ( !admin || !password ) {
         return res.json( {
-            success: true,
-            token,
+            success: false,
+            message: "Authentication failed.",
         } );
     }
+    const token = jwt.sign( admin.toObject(), SECRET, { expiresIn: 1440 } );
     return res.json( {
-        success: false,
-        message: "Authentication failed. Admin not found.",
+        success: true,
+        token,
     } );
 };
 
@@ -104,9 +99,9 @@ exports.deleteMovie = ( req, res ) => {
 };
 
 exports.blockUser = ( req, res ) => {
-    const user = req.user;
     const admin = req.admin;
-    const blockedReason = req.blockEDReason;
+    const user = req.user;
+    const blockedReason = req.blockedReason;
 
     user.blocked = true;
     user.blockedBy = admin.id;
@@ -125,17 +120,17 @@ exports.blockUser = ( req, res ) => {
 
 exports.removeReview = ( req, res ) => {
     const movie = req.movie;
-    const admin = req.admin;
+    const reviewId = req.params.reviewId;
 
-    movie.deleted = true;
-    movie.deletedBy = admin.id;
-    movie.save( ( err, savedMovie ) => {
+    const reviewIndex = movie.getReviewIndex( reviewId );
+    if ( reviewIndex === -1 ) {
+        return res.notFound();
+    }
+    movie.removeReview( reviewIndex );
+    movie.save( ( err, updatedMovie ) => {
         if ( err ) {
             return res.validationError( err );
         }
-        return res.success( extractObject(
-            savedMovie,
-            [ "id", "deleted", "deletedBy" ],
-        ) );
+        return res.success( updatedMovie );
     } );
 };

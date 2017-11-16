@@ -30,6 +30,10 @@ exports.register = ( req, res ) => {
 
 exports.login = ( req, res ) => {
     const user = req.user;
+    if ( user.deleted === true ) {
+        res.forbidden();
+        return;
+    }
     if ( !req.body.password ) {
         res.status( 400 ).send( "password required" );
         return;

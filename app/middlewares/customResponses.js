@@ -49,6 +49,13 @@ const customResponses = {
         } );
     },
 
+    forbidden( ) {
+        return this.status( 403 ).json( {
+            success: false,
+            error: "forbidden",
+        } );
+    },
+
     serverError( ) {
         return this.status( 503 ).json( {
             success: false,

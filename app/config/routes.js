@@ -6,7 +6,7 @@ const adminsController = require( "../controllers/adminsController" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
-const checkReviewExistence = require( "../middlewares/checkReviewExistence" );
+const getMovieForReview = require( "../middlewares/getMovieForReview" );
 
 const express = require( "express" );
 
@@ -86,6 +86,7 @@ router.delete( "/users/:userId/deleteProfile",
 */
 router.post( "/users/:userId/addMovie",
     checkExistingModel( "userId", "User", "user" ),
+    validateToken,
     checkExistingModel( "title", "Movie", "movie" ),
     usersController.addMovie );
 
@@ -157,7 +158,7 @@ router.get( "/movies/getAll/:param?",
 */
 router.post( "/admins/registration",
     checkExistingModel( "username", "Admin", "admin" ),
-    usersController.register );
+    adminsController.register );
 
 /**
 *    @apiGroup Admin
@@ -174,7 +175,7 @@ router.post( "/admins/registration",
 */
 router.post( "/admins/login",
     checkExistingModel( "username", "Admin", "admin" ),
-    usersController.login );
+    adminsController.login );
 
 /**
 *    @apiGroup Admin
@@ -197,10 +198,10 @@ router.put( "/admins/:adminId/edit",
 *           id:123456789
 *       }
 */
-// router.delete( "/admins/:adminId/deleteProfile",
-//      checkExistingModel( "adminId", "Admin", "admin" ),
-//      validateToken,
-//      adminsController.delete );
+router.delete( "/admins/:adminId/deleteProfile",
+    checkExistingModel( "adminId", "Admin", "admin" ),
+    validateToken,
+    adminsController.deleteProfile );
 
 /**
 *    @apiGroup Admin
@@ -211,12 +212,12 @@ router.put( "/admins/:adminId/edit",
 *           id:123456789
 *       }
 */
-// router.delete( "/admins/:adminId/deleteMovie/:movieId",
-//     checkExistingModel( "adminId", "Admin", "admin" ),
-//     validateToken,
-//     checkExistingModel( "movieId", "Movie", "movie" ),
-//     adminsController.deleteMovie,
-// );
+router.delete( "/admins/:adminId/deleteMovie/:movieId",
+    checkExistingModel( "adminId", "Admin", "admin" ),
+    validateToken,
+    checkExistingModel( "movieId", "Movie", "movie" ),
+    adminsController.deleteMovie,
+);
 
 /**
 *    @apiGroup Admin
@@ -244,12 +245,12 @@ router.put( "/admins/:adminId/block/:userId",
 *           id:123456789
 *       }
 */
-// router.put( "/admins/:adminId/deleteReview/:reviewId",
-//     checkExistingModel( "adminId", "Admin", "admin" ),
-//     validateToken,
-//     checkReviewExistence,
-//     adminsController.removeReview,
-// );
+router.delete( "/admins/:adminId/deleteReview/:reviewId",
+    checkExistingModel( "adminId", "Admin", "admin" ),
+    validateToken,
+    getMovieForReview,
+    adminsController.removeReview,
+);
 
 router.get( "/test", ( req, res ) => {
     res.json( { success: true } );

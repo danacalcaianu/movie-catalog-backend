@@ -44,9 +44,6 @@ const movieSchema = new Schema( {
 
 /* eslint func-names : off */
 movieSchema.methods.createMovie = function( data ) {
-    console.log( "data", data );
-    console.log( "this", this );
-
     this.title = data.title;
     this.description = data.description;
     this.categories = data.categories;
@@ -62,6 +59,15 @@ movieSchema.methods.addReview = function( body, author ) {
         id: uid( 10 ),
     };
     return this.reviews.push( review );
+};
+
+movieSchema.methods.getReviewIndex = function( reviewId ) {
+    const index = this.reviews.map( review => review.id ).indexOf( reviewId );
+    return index;
+};
+
+movieSchema.methods.removeReview = function( reviewIndex ) {
+    this.reviews.splice( reviewIndex, 1 );
 };
 
 movieSchema.methods.addOwner = function( userId ) {

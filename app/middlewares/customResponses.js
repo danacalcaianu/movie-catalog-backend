@@ -13,6 +13,13 @@ const customResponses = {
         } );
     },
 
+    conflict( customError ) {
+        return this.status( 409 ).json( {
+            success: false,
+            error: customError || "conflict",
+        } );
+    },
+
     preconditionFailed( customError ) {
         return this.status( 412 ).json( {
             success: false,
@@ -46,6 +53,13 @@ const customResponses = {
         return this.status( 404 ).json( {
             success: false,
             error: "not_found",
+        } );
+    },
+
+    forbidden( ) {
+        return this.status( 403 ).json( {
+            success: false,
+            error: "forbidden",
         } );
     },
 

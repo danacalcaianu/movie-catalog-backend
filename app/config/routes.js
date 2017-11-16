@@ -7,6 +7,10 @@ const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
 const getMovieForReview = require( "../middlewares/getMovieForReview" );
+const checkUserAccess = require( "../middlewares/checkUserAccess" );
+const checkEmailExists = require( "../middlewares/checkEmailExists" );
+const checkEmailFormat = require( "../middlewares/checkEmailFormat" );
+
 
 const express = require( "express" );
 
@@ -30,6 +34,8 @@ const router = express.Router( );
 */
 router.post( "/users/registration",
     checkExistingModel( "username", "User", "user" ),
+    checkEmailExists( "User" ),
+    checkEmailFormat(),
     usersController.register );
 
 /**
@@ -47,6 +53,7 @@ router.post( "/users/registration",
 */
 router.post( "/users/login",
     checkExistingModel( "username", "User", "user" ),
+    checkUserAccess(),
     usersController.login );
 
 /**
@@ -84,7 +91,7 @@ router.delete( "/users/:userId/deleteProfile",
 *           id:123456789
 *       }
 */
-router.post( "/users/:userId/addMovie",
+router.put( "/users/:userId/addMovie",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     checkExistingModel( "title", "Movie", "movie" ),
@@ -157,6 +164,7 @@ router.get( "/movies/getAll/:param?",
 *      }
 */
 router.post( "/admins/registration",
+    checkEmailExists( "User" ),
     checkExistingModel( "username", "Admin", "admin" ),
     adminsController.register );
 

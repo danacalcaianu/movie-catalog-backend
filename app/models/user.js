@@ -19,6 +19,7 @@ const userSchema = new Schema( {
     } ],
     avatar: { type: String },
     deleted: { type: Boolean, default: false },
+    blocked: { type: Boolean, default: false },
     blockedBy: { type: String },
     blockedReason: { type: String },
 }, {

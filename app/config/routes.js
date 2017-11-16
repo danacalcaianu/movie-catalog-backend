@@ -36,7 +36,8 @@ router.post( "/users/registration",
     checkExistingModel( "username", "User", "user" ),
     checkEmailExists( "User" ),
     checkEmailExists( "Admin" ),
-    usersController.register );
+    usersController.register,
+);
 
 /**
 *    @apiGroup User
@@ -54,7 +55,8 @@ router.post( "/users/registration",
 router.post( "/users/login",
     checkExistingModel( "username", "User", "user" ),
     checkUserAccess(),
-    usersController.login );
+    usersController.login,
+);
 
 /**
 *    @apiGroup User
@@ -66,7 +68,8 @@ router.post( "/users/login",
 router.put( "/users/:userId/edit",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    usersController.edit );
+    usersController.edit,
+);
 
 /**
 *    @apiGroup User
@@ -80,7 +83,8 @@ router.put( "/users/:userId/edit",
 router.put( "/users/:userId/deleteProfile",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    usersController.delete );
+    usersController.delete,
+);
 
 /**
 *    @apiGroup User
@@ -95,7 +99,8 @@ router.put( "/users/:userId/addMovie",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     checkExistingModel( "title", "Movie", "movie" ),
-    usersController.addMovie );
+    usersController.addMovie,
+);
 
 /**
 *    @apiGroup User
@@ -105,7 +110,8 @@ router.put( "/users/:userId/rateMovie/:movieId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     checkExistingModel( "movieId", "Movie", "movie" ),
-    usersController.rateMovie );
+    usersController.rateMovie,
+);
 
 /**
 *    @apiGroup User
@@ -115,7 +121,8 @@ router.put( "/users/:userId/reviewMovie/:movieId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     checkExistingModel( "movieId", "Movie", "movie" ),
-    usersController.reviewMovie );
+    usersController.reviewMovie,
+);
 
 /**
 *    @apiGroup User
@@ -126,7 +133,8 @@ router.put( "/users/:userId/editMovie/:movieId",
     validateToken,
     checkExistingModel( "movieId", "Movie", "movie" ),
     checkOwnership( ),
-    usersController.editMovie );
+    usersController.editMovie,
+);
 
 /**
 
@@ -139,16 +147,16 @@ router.delete( "/users/:userId/removeReview/:reviewId",
     getMovieForReview,
     usersController.removeReview,
 );
-
+/*
     *    @apiGroup User
     *    @api {put} /users/:userId/spamReview/:reviewId Mark a review as spam.
-    */
+*/
 router.put( "/users/:userId/spamReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     getMovieForReview,
-    usersController.markReviewAsSpam );
-
+    usersController.markReviewAsSpam,
+);
 
 /**
 *    @apiGroup Movie
@@ -158,7 +166,8 @@ router.put( "/users/:userId/spamReview/:reviewId",
 */
 router.get( "/movies/:movieId/getMovie",
     checkExistingModel( "movieId", "Movie", "movie" ),
-    moviesController.getMovie );
+    moviesController.getMovie,
+);
 
 /**
 *    @apiGroup Movie
@@ -168,7 +177,8 @@ router.get( "/movies/:movieId/getMovie",
 */
 router.get( "/movies/getAll/:param?",
     checkRequestParameter,
-    moviesController.getAllMovies );
+    moviesController.getAllMovies,
+);
 
 /**
 *    @apiGroup Admin
@@ -191,7 +201,8 @@ router.post( "/admins/registration",
     checkEmailExists( "Admin" ),
     checkEmailFormat(),
     checkExistingModel( "username", "Admin", "admin" ),
-    adminsController.register );
+    adminsController.register,
+);
 
 /**
 *    @apiGroup Admin
@@ -208,7 +219,8 @@ router.post( "/admins/registration",
 */
 router.post( "/admins/login",
     checkExistingModel( "username", "Admin", "admin" ),
-    adminsController.login );
+    adminsController.login,
+);
 
 /**
 *    @apiGroup Admin
@@ -220,7 +232,8 @@ router.post( "/admins/login",
 router.put( "/admins/:adminId/edit",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
-    adminsController.edit );
+    adminsController.edit,
+);
 
 /**
 *    @apiGroup Admin
@@ -234,7 +247,8 @@ router.put( "/admins/:adminId/edit",
 router.put( "/admins/:adminId/deleteProfile",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
-    adminsController.deleteProfile );
+    adminsController.deleteProfile,
+);
 
 /**
 *    @apiGroup Admin
@@ -266,7 +280,8 @@ router.put( "/admins/:adminId/block/:userId",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
     checkExistingModel( "userId", "User", "user" ),
-    adminsController.blockUser );
+    adminsController.blockUser,
+);
 
 /**
 *    @apiGroup Admin

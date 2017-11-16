@@ -86,6 +86,7 @@ router.delete( "/users/:userId/deleteProfile",
 */
 router.put( "/users/:userId/addMovie",
     checkExistingModel( "userId", "User", "user" ),
+    validateToken,
     checkExistingModel( "title", "Movie", "movie" ),
     usersController.addMovie );
 

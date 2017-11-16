@@ -86,6 +86,7 @@ exports.addMovie = ( req, res ) => {
 exports.rateMovie = ( req, res ) => {
     const movie = req.movie;
     movie.addRating( req.body.rating );
+    movie.updateRating();
     movie.save();
     return res.success( movie );
 };

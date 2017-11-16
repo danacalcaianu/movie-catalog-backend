@@ -29,12 +29,12 @@ const movieSchema = new Schema( {
     },
     releaseDate: Date,
     description: { type: String, required: true },
-    rating: {
+    rating: [ {
         type: Number,
         min: 0,
         max: 5,
-        default: 0,
-    },
+        default: [],
+    } ],
     picture: String,
     addedBy: String, // userId / adminId
     deletedBy: String, // adminId
@@ -73,7 +73,18 @@ movieSchema.methods.addId = function( ) {
 };
 
 movieSchema.methods.addRating = function( rating ) {
-    this.rating = rating;
+    this.rating.push( rating );
+};
+
+movieSchema.methods.updateRating = function() {
+    let total = 0;
+    let count = 0;
+    this.rating.forEach( function( element ) {
+        total += element;
+        count += 1;
+    } );
+    total /= count;
+    this.rating = total;
 };
 
 movieSchema.methods.editMovie = function( body ) {

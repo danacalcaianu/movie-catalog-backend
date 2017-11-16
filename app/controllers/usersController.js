@@ -11,10 +11,13 @@ const SECRET = "superSuperSecret";
 /* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
     let user = req.user;
-    const email = req.body.email;
-    if ( user || !email || !isValidEmail( email ) ) {
+    // const email = req.body.email;
+    if ( user ) {
         return res.preconditionFailed( "existing_user" );
     }
+    // if ( !isValidEmail( email ) ) {
+    //     return res.preconditionFailed( "check email" );
+    // }
     user = new User( req.body );
     user.setId();
     user.setPass( req.body.password );
@@ -30,10 +33,6 @@ exports.register = ( req, res ) => {
 
 exports.login = ( req, res ) => {
     const user = req.user;
-    // if ( user.deleted === true ) {
-    //     res.forbidden();
-    //     return;
-    // }
     if ( !req.body.password ) {
         res.status( 400 ).send( "password required" );
         return;

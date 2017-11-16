@@ -8,6 +8,8 @@ const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
 const checkReviewExistence = require( "../middlewares/checkReviewExistence" );
 const checkUserAccess = require( "../middlewares/checkUserAccess" );
+const checkEmailExists = require( "../middlewares/checkEmailExists" );
+const checkEmailFormat = require( "../middlewares/checkEmailFormat" );
 
 const express = require( "express" );
 
@@ -31,6 +33,8 @@ const router = express.Router( );
 */
 router.post( "/users/registration",
     checkExistingModel( "username", "User", "user" ),
+    checkEmailExists( "User" ),
+    checkEmailFormat(),
     usersController.register );
 
 /**
@@ -160,6 +164,7 @@ router.get( "/movies/getAll/:param?",
 */
 router.post( "/admins/registration",
     checkExistingModel( "username", "Admin", "admin" ),
+    checkEmailExists( "User" ),
     usersController.register );
 
 /**

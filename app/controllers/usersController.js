@@ -11,10 +11,13 @@ const SECRET = "superSuperSecret";
 /* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
     let user = req.user;
-    const email = req.body.email;
-    if ( user || !email || !isValidEmail( email ) ) {
+    // const email = req.body.email;
+    if ( user ) {
         return res.preconditionFailed( "existing_user" );
     }
+    // if ( !isValidEmail( email ) ) {
+    //     return res.preconditionFailed( "check email" );
+    // }
     user = new User( req.body );
     user.setId();
     user.setPass( req.body.password );
@@ -86,6 +89,7 @@ exports.addMovie = ( req, res ) => {
 exports.rateMovie = ( req, res ) => {
     const movie = req.movie;
     movie.addRating( req.body.rating );
+    movie.updateRating();
     movie.save();
     return res.success( movie );
 };

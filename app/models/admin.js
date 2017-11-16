@@ -16,11 +16,12 @@ const adminSchema = new Schema( {
     timestamps: true,
 } );
 
-adminSchema.methods.setId = () => {
+/* eslint func-names : off */
+adminSchema.methods.setId = function() {
     this.id = uid( 10 );
 };
 
-adminSchema.methods.setPass = ( password ) => {
+adminSchema.methods.setPass = function( password ) {
     this.password = bcrypt.hashSync( password );
 };
 

@@ -36,16 +36,10 @@ exports.login = ( req, res ) => {
     }
     const password = bcrypt.compareSync( req.body.password, user.password );
 
-    if ( !user ) {
+    if ( !user || !password ) {
         return res.json( {
             success: false,
-            message: "Authentication failed. User not found.",
-        } );
-    }
-    if ( !password ) {
-        return res.json( {
-            success: false,
-            message: "Authentication failed. Wrong password.",
+            message: "Authentication failed.",
         } );
     }
     const token = jwt.sign( user.toObject(), SECRET, { expiresIn: 1440 } );
@@ -98,7 +92,7 @@ exports.rateMovie = ( req, res ) => {
 
 exports.reviewMovie = ( req, res ) => {
     const movie = req.movie;
-    movie.addReview( req.body, req.user );
+    movie.addReview( req.body, req.user.username );
     movie.save();
     return res.success( movie );
 };

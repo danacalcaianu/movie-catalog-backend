@@ -15,7 +15,7 @@ const userSchema = new Schema( {
     gender: { type: String, enum: [ "male", "female" ] },
     categories: [ {
         type: String,
-        enum: [ "action", "comedy", "drama", "horror", "Sci-Fi", "romance" ],
+        enum: [ "Action", "Comedy", "Drama", "Horror", "Sci-Fi", "Romance" ],
     } ],
     avatar: { type: String },
     deleted: { type: Boolean, default: false },
@@ -24,18 +24,20 @@ const userSchema = new Schema( {
 }, {
     timestamps: true,
 } );
-
-userSchema.methods.setId = () => {
+/* eslint func-names : off */
+userSchema.methods.setId = function () {
     this.id = uid( 10 );
 };
 
-userSchema.methods.setPass = ( password ) => {
+userSchema.methods.setPass = function( password ) {
     this.password = bcrypt.hashSync( password );
 };
 
-userSchema.methods.setFullName = ( ) => `${ this.firstName } ${ this.lastName }`;
+userSchema.methods.setFullName = function( ) {
+    return `${ this.firstName } ${ this.lastName }`;
+};
 
-userSchema.methods.editUser = ( body ) => {
+userSchema.methods.editUser = function( body ) {
     const { firstName, lastName, gender, age, categories, avatar, email } = body;
 
     this.firstName = firstName;

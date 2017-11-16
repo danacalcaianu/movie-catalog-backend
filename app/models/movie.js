@@ -42,7 +42,8 @@ const movieSchema = new Schema( {
     reviews: { type: [ reviewSchema ], default: [ ] },
 } );
 
-movieSchema.methods.createMovie = ( data ) => {
+/* eslint func-names : off */
+movieSchema.methods.createMovie = function( data ) {
     console.log( "data", data );
     console.log( "this", this );
 
@@ -51,8 +52,7 @@ movieSchema.methods.createMovie = ( data ) => {
     this.categories = data.categories;
     return this;
 };
-
-movieSchema.methods.addReview = ( body, author ) => {
+movieSchema.methods.addReview = function( body, author ) {
     const { title, description, rating } = body;
     const review = {
         title,
@@ -64,19 +64,19 @@ movieSchema.methods.addReview = ( body, author ) => {
     return this.reviews.push( review );
 };
 
-movieSchema.methods.addOwner = ( userId ) => {
+movieSchema.methods.addOwner = function( userId ) {
     this.addedBy = userId;
 };
 
-movieSchema.methods.addId = ( ) => {
+movieSchema.methods.addId = function( ) {
     this.id = uid( 10 );
 };
 
-movieSchema.methods.addRating = ( rating ) => {
+movieSchema.methods.addRating = function( rating ) {
     this.rating = rating;
 };
 
-movieSchema.methods.editMovie = ( body ) => {
+movieSchema.methods.editMovie = function( body ) {
     const { title, director, picture, releaseDate, description, categories, cast } = body;
     this.title = title;
     this.director = director;

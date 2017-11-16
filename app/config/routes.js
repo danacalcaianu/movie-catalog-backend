@@ -165,6 +165,7 @@ router.get( "/movies/getAll/:param?",
 router.post( "/admins/registration",
     checkExistingModel( "username", "Admin", "admin" ),
     checkEmailExists( "User" ),
+    checkEmailFormat(),
     usersController.register );
 
 /**

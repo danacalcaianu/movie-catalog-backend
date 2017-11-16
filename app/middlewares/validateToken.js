@@ -14,7 +14,7 @@ module.exports = ( req, res, next ) => {
                 } );
             }
             req.decoded = decoded;
-            if ( req.user.id !== decoded.id ) {
+            if ( req.user.id !== decoded.id || req.admin.id !== decoded.id ) {
                 return res.unauthorized( );
             }
             return next( );

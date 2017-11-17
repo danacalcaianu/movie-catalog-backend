@@ -1,6 +1,5 @@
 const mongoose = require( "mongoose" );
-const updateRating = require( "../utilities/index" ).updateRating;
-const saveChangesToModel = require( "../utilities/index" ).saveChangesToModel;
+const { saveChangesToModel, updateRating } = require( "../utilities/index" );
 
 const User = mongoose.model( "User" );
 const Movie = mongoose.model( "Movie" );

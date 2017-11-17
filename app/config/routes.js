@@ -35,12 +35,12 @@ const router = express.Router( );
 *      }
 */
 router.post( "/users/registration",
-    checkEmailFormat(),
-    checkPasswordFormat(),
+    checkEmailFormat,
+    checkPasswordFormat,
     checkExistingModel( "username", "User", "user" ),
     checkEmailExists( "User" ),
     checkEmailExists( "Admin" ),
-    hashPassword(),
+    hashPassword,
     usersController.register,
 );
 
@@ -59,9 +59,9 @@ router.post( "/users/registration",
 */
 router.post( "/users/login",
     checkExistingModel( "username", "User", "user" ),
-    checkLoginPassword(),
-    checkUserAccess(),
-    asignToken(),
+    checkLoginPassword,
+    checkUserAccess,
+    asignToken,
     usersController.login,
 );
 
@@ -73,7 +73,7 @@ router.post( "/users/login",
 *    @apiParam {String} password  Mandatory password.
 */
 router.put( "/users/:userId/edit",
-    checkEmailFormat(),
+    checkEmailFormat,
     checkEmailExists( "User" ),
     checkEmailExists( "Admin" ),
     checkExistingModel( "userId", "User", "user" ),
@@ -152,7 +152,7 @@ router.put( "/users/:userId/editMovie/:movieId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     checkExistingModel( "movieId", "Movie", "movie" ),
-    checkOwnership( ),
+    checkOwnership,
     usersController.editMovie,
 );
 
@@ -236,10 +236,10 @@ router.get( "/movies/getAll/:param?",
 router.post( "/admins/registration",
     checkEmailExists( "User" ),
     checkEmailExists( "Admin" ),
-    checkEmailFormat(),
-    checkPasswordFormat(),
+    checkEmailFormat,
+    checkPasswordFormat,
     checkExistingModel( "username", "Admin", "admin" ),
-    hashPassword(),
+    hashPassword,
     adminsController.register,
 );
 
@@ -258,8 +258,8 @@ router.post( "/admins/registration",
 */
 router.post( "/admins/login",
     checkExistingModel( "username", "Admin", "admin" ),
-    checkLoginPassword(),
-    asignToken(),
+    checkLoginPassword,
+    asignToken,
     adminsController.login,
 );
 
@@ -271,7 +271,7 @@ router.post( "/admins/login",
 *    @apiParam {String} password  Mandatory password.
 */
 router.put( "/admins/:adminId/edit",
-    checkEmailFormat(),
+    checkEmailFormat,
     checkEmailExists( "User" ),
     checkEmailExists( "Admin" ),
     checkExistingModel( "adminId", "Admin", "admin" ),

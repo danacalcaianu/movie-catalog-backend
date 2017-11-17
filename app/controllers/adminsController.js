@@ -1,6 +1,6 @@
 const mongoose = require( "mongoose" );
-const extractObject = require( "../utilities" ).extractObject;
-const saveChangesToModel = require( "../utilities/index" ).saveChangesToModel;
+const { extractObject } = require( "../utilities" );
+const { saveChangesToModel } = require( "../utilities/index" );
 
 const Admin = mongoose.model( "Admin" );
 

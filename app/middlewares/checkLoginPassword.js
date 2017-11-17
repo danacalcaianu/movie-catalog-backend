@@ -1,6 +1,6 @@
 const bcrypt = require( "bcrypt" );
 
-module.exports = ( ) => ( req, res, next ) => {
+module.exports = ( req, res, next ) => {
     const person = req.user || req.admin;
     if ( !req.body.password ) {
         res.status( 400 ).send( "password required" );

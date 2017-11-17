@@ -1,4 +1,4 @@
-const extractObject = require( "../utilities" ).extractObject;
+const { extractObject } = require( "../utilities" );
 const mongoose = require( "mongoose" );
 
 const Movie = mongoose.model( "Movie" );

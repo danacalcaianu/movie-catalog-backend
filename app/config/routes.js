@@ -208,13 +208,29 @@ router.get( "/movies/:movieId/getMovie",
 
 /**
 *    @apiGroup Movie
-*    @api {get} /movies/getAll/:param Get all movies.
+*    @api {get} /movies/getAll/:param? Get all movies.
 *    @apiDescription returns all movies if param is missing, otherwise
 *    filters by param value (rating, categories)
 */
 router.get( "/movies/getAll/:param?",
     checkRequestParameter,
     moviesController.getAllMovies,
+);
+
+/**
+*    @apiGroup Movie
+*    @api {get} /movies/getUserMovies/:userId Get all movies added by a user.
+*    @apiDescription returns all movies for a user by id
+*    @apiParam {String} id  user ID required.
+*    @apiHeaderExample Example header
+*       {
+*           x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6
+*       }
+*/
+router.get( "/movies/getUserMovies/:userId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    moviesController.getMoviesForUser,
 );
 
 /**

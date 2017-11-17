@@ -25,3 +25,16 @@ exports.getAllMovies = ( req, res ) => {
             return res.success( results );
         } );
 };
+
+exports.getMoviesForUser = ( req, res ) => {
+    const { id } = req.user;
+    return Movie.find(
+        { addedBy: id },
+        ( err, results ) => {
+            if ( err ) {
+                return res.serverError();
+            }
+            return res.success( results );
+        },
+    );
+};

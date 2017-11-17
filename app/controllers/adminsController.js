@@ -16,14 +16,7 @@ exports.register = ( req, res ) => {
     admin = new Admin( req.body );
     admin.setId();
     admin.setPass( req.body.password );
-    admin.save( ( err, savedAdmin ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( extractObject(
-            savedAdmin,
-            [ "id", "username" ] ) );
-    } );
+    saveChangesToModel( res, admin );
 };
 
 exports.login = ( req, res ) => {
@@ -108,7 +101,7 @@ exports.removeReview = ( req, res ) => {
     const reviewIndex = movie.getReviewIndex( reviewId );
     const review = movie.getReviewForIndex( reviewIndex );
     const ratingIndex = movie.getRatingIndex( review.author );
-    
+
     movie.deleteRating( ratingIndex );
     movie.updateRatingAverage();
     movie.removeReview( reviewIndex );

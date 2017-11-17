@@ -18,18 +18,12 @@ exports.register = ( req, res ) => {
     user = new User( req.body );
     user.setId();
     user.setPass( req.body.password );
-    user.save( ( err, savedUser ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( extractObject(
-            savedUser,
-            [ "id", "username" ] ) );
-    } );
+    saveChangesToModel( res, user );
 };
 
 exports.login = ( req, res ) => {
     const user = req.user;
+
     if ( !req.body.password ) {
         res.status( 400 ).send( "password required" );
         return;
@@ -51,12 +45,14 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const user = req.user;
+
     user.editUser( req.body );
     saveChangesToModel( res, user );
 };
 
 exports.delete = ( req, res ) => {
     const user = req.user;
+
     user.deleted = true;
     saveChangesToModel( res, user );
 };
@@ -64,11 +60,11 @@ exports.delete = ( req, res ) => {
 exports.addMovie = ( req, res ) => {
     const user = req.user;
     let movie = req.movie;
+
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
     }
     movie = new Movie( req.body );
-
     movie.addOwner( user.id );
     movie.addId( );
     saveChangesToModel( res, movie );
@@ -100,7 +96,7 @@ exports.removeReview = ( req, res ) => {
     const { username } = req.user;
     const reviewId = req.params.reviewId;
     const reviewIndex = movie.getReviewIndex( reviewId );
-    
+
     if ( movie.reviews[ reviewIndex ].author !== username ) {
         return res.unauthorized();
     }

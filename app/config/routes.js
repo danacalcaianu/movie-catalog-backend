@@ -1,8 +1,8 @@
 const errorsController = require( "../controllers/errorsController" );
 const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
-const checkOwnership = require( "../middlewares/checkOwnership" );
 const adminsController = require( "../controllers/adminsController" );
+const checkOwnership = require( "../middlewares/checkOwnership" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );

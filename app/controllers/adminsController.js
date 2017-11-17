@@ -26,12 +26,7 @@ exports.login = ( req, res ) => {
 
 exports.edit = ( req, res ) => {
     const admin = req.admin;
-    const { email, firstName, lastName, avatar } = req.body;
-
-    admin.email = email || admin.email;
-    admin.firstName = firstName || admin.firstName;
-    admin.lastName = lastName || admin.lastName;
-    admin.avatar = avatar;
+    admin.edit( req.body );
     saveChangesToModel( res, admin );
 };
 

@@ -2,6 +2,7 @@ const mongoose = require( "mongoose" );
 const extractObject = require( "../utilities" ).extractObject;
 const jwt = require( "jsonwebtoken" );
 const bcrypt = require( "bcrypt-nodejs" );
+const saveChangesToModel = require( "../utilities/index" ).saveChangesToModel;
 
 const Admin = mongoose.model( "Admin" );
 const SECRET = "superSuperSecret";
@@ -107,15 +108,7 @@ exports.blockUser = ( req, res ) => {
     user.blockedBy = admin.id;
     user.blockedReason = blockedReason;
 
-    user.save( ( err, savedUser ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( extractObject(
-            savedUser,
-            [ "id", "blocked", "blockedBy", "blockedReason" ],
-        ) );
-    } );
+    saveChangesToModel( res, user );
 };
 
 exports.removeReview = ( req, res ) => {
@@ -127,11 +120,10 @@ exports.removeReview = ( req, res ) => {
     }
 
     const reviewIndex = movie.getReviewIndex( reviewId );
+    const review = movie.getReviewForIndex( reviewIndex );
+    const ratingIndex = movie.getRatingIndex( review.author );
+    movie.deleteRating( ratingIndex );
+    movie.updateRatingAverage();
     movie.removeReview( reviewIndex );
-    movie.save( ( err, updatedMovie ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( updatedMovie );
-    } );
+    saveChangesToModel( res, movie );
 };

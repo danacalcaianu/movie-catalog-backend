@@ -4,3 +4,22 @@ exports.extractObject = ( obj, keys ) => {
 
     return returnObj;
 };
+
+exports.updateRating = ( movie, rating, username ) => {
+    const ratingIndex = movie.getRatingIndex( username );
+    if ( ratingIndex === -1 ) {
+        movie.addRating( rating, username );
+    } else {
+        movie.updateRating( rating, ratingIndex );
+    }
+    movie.updateRatingAverage();
+};
+
+exports.saveChangesToModel = ( res, model ) => {
+    model.save( ( err, updatedModel ) => {
+        if ( err ) {
+            return res.validationError( err );
+        }
+        return res.success( updatedModel );
+    } );
+};

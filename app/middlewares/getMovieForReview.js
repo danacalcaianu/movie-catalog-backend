@@ -5,14 +5,11 @@ const Movie = mongoose.model( "Movie" );
 module.exports = ( req, res, next ) => {
     const reviewId = req.params.reviewId;
     Movie
-        .find( { "reviews.id": reviewId } ) // { reviews: 1, _id: 0 } )
+        .find( { "reviews.id": reviewId } )
         .exec( ( err, result ) => {
-            if ( err ) {
+            if ( err || result.length === 0 ) {
                 return res.notFound();
             }
-            // const [ { reviews } ] = result;
-            // const [ filteredReview ] = reviews.filter( ( review ) => review.id === reviewId );
-            // req.review = filteredReview;
             [ req.movie ] = result;
             return next();
         } );

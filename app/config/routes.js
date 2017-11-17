@@ -334,10 +334,6 @@ router.delete( "/admins/:adminId/deleteReview/:reviewId",
     adminsController.removeReview,
 );
 
-router.get( "/test", ( req, res ) => {
-    res.json( { success: true } );
-} );
-
 router.use( errorsController.notFound );
 
 module.exports = ( app ) => {

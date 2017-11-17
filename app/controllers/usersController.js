@@ -99,11 +99,8 @@ exports.removeReview = ( req, res ) => {
     const movie = req.movie;
     const { username } = req.user;
     const reviewId = req.params.reviewId;
-
-    if ( !movie ) {
-        return res.notFound();
-    }
     const reviewIndex = movie.getReviewIndex( reviewId );
+    
     if ( movie.reviews[ reviewIndex ].author !== username ) {
         return res.unauthorized();
     }
@@ -115,15 +112,12 @@ exports.removeReview = ( req, res ) => {
 
     saveChangesToModel( res, movie );
 };
+
 exports.markReviewAsSpam = ( req, res ) => {
     const movie = req.movie;
     const reviewId = req.params.reviewId;
-
-    if ( !movie ) {
-        return res.notFound();
-    }
-
     const reviewIndex = movie.getReviewIndex( reviewId );
+
     movie.spamReview( reviewIndex );
     saveChangesToModel( res, movie );
 };
@@ -132,11 +126,8 @@ exports.editReview = ( req, res ) => {
     const movie = req.movie;
     const { username } = req.user;
     const reviewId = req.params.reviewId;
-
-    if ( !movie ) {
-        return res.notFound();
-    }
     const reviewIndex = movie.getReviewIndex( reviewId );
+
     if ( movie.reviews[ reviewIndex ].author !== username ) {
         return res.unauthorized();
     }

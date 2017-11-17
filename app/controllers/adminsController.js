@@ -105,14 +105,10 @@ exports.blockUser = ( req, res ) => {
 exports.removeReview = ( req, res ) => {
     const movie = req.movie;
     const reviewId = req.params.reviewId;
-
-    if ( !movie ) {
-        return res.notFound();
-    }
-
     const reviewIndex = movie.getReviewIndex( reviewId );
     const review = movie.getReviewForIndex( reviewIndex );
     const ratingIndex = movie.getRatingIndex( review.author );
+    
     movie.deleteRating( ratingIndex );
     movie.updateRatingAverage();
     movie.removeReview( reviewIndex );

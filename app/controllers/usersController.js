@@ -1,5 +1,4 @@
 const mongoose = require( "mongoose" );
-const extractObject = require( "../utilities" ).extractObject;
 const jwt = require( "jsonwebtoken" );
 const bcrypt = require( "bcrypt-nodejs" );
 const updateRating = require( "../utilities/index" ).updateRating;

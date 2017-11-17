@@ -11,6 +11,7 @@ module.exports = ( req, res, next ) => {
     if ( !token || !person ) {
         return res.unauthorized( );
     }
+
     jwt.verify( token, SECRET, ( err, decoded ) => {
         if ( err ) {
             return res.json( {

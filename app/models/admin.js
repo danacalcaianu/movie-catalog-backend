@@ -25,4 +25,12 @@ adminSchema.methods.setPass = function( password ) {
     this.password = bcrypt.hashSync( password );
 };
 
+adminSchema.methods.edit = function ( body ) {
+    const { email, firstName, lastName, avatar } = body;
+    this.email = email || this.email;
+    this.firstName = firstName || this.firstName;
+    this.lastName = lastName || this.lastName;
+    this.avatar = avatar;
+};
+
 module.exports = mongoose.model( "Admin", adminSchema );

@@ -3,5 +3,5 @@ module.exports = ( ) => ( req, res, next ) => {
     if ( user.deleted === true || user.blocked === true ) {
         return res.forbidden();
     }
-    next();
+    return next();
 };

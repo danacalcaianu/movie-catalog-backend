@@ -8,11 +8,14 @@ module.exports = ( req, res, next ) => {
     }
     if ( isNaN( parseInt( property, 10 ) ) ) {
         property = "categories";
+        field[ property ] = req.params.param;
     } else {
-        property = "rating";
+        property = "averageRating";
+        const lowerBound = Math.floor( Number( req.params.param, 10 ) );
+        const upperBound = Math.round( Number( req.params.param, 10 ) );
+        field[ property ] = { $gte: lowerBound, $lte: upperBound };
     }
 
-    field[ property ] = req.params.param;
     req.body.field = field;
 
     return next();

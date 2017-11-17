@@ -62,7 +62,7 @@ router.post( "/users/login",
 *    @apiGroup User
 *    @api {put} /users/:userId/edit Edit the profile and filtering options.
 *    @apiDescription Useful to change profile information
-*    @apiParam {String} id  User ID required.
+*    @apiParam {String} userId  User ID required.
 *    @apiParam {String} password  Mandatory password.
 */
 router.put( "/users/:userId/edit",
@@ -77,7 +77,7 @@ router.put( "/users/:userId/edit",
 /**
 *    @apiGroup User
 *    @api {delete} /users/:userId/deleteProfile Delete an user.
-*    @apiParam {String} id  User ID required.
+*    @apiParam {String} userId  User ID required.
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789
@@ -92,7 +92,7 @@ router.put( "/users/:userId/deleteProfile",
 /**
 *    @apiGroup User
 *    @api {delete} /users/:userId/addMovie Add a movie.
-*    @apiParam {String} id  User ID required.
+*    @apiParam {String} userId  User ID required.
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789
@@ -108,6 +108,12 @@ router.put( "/users/:userId/addMovie",
 /**
 *    @apiGroup User
 *    @api {put} /users/:userId/rateMovie/:movieId Rate a movie.
+*    @apiParam {String} userId  User ID required.
+*    @apiParam {String} movieId  Movie ID required.
+*    @apiBodyExample Example body
+*       {
+*           rating: "3"
+*       }
 */
 router.put( "/users/:userId/rateMovie/:movieId",
     checkExistingModel( "userId", "User", "user" ),
@@ -119,6 +125,8 @@ router.put( "/users/:userId/rateMovie/:movieId",
 /**
 *    @apiGroup User
 *    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
+*    @apiParam {String} userId  User ID required.
+*    @apiParam {String} movieId  Movie ID required.
 */
 router.put( "/users/:userId/reviewMovie/:movieId",
     checkExistingModel( "userId", "User", "user" ),
@@ -130,6 +138,8 @@ router.put( "/users/:userId/reviewMovie/:movieId",
 /**
 *    @apiGroup User
 *    @api {put} /users/:userId/editMovie/:movieId Edit a movie.
+*    @apiParam {String} userId  User ID required.
+*    @apiParam {String} movieId  Movie ID required.
 */
 router.put( "/users/:userId/editMovie/:movieId",
     checkExistingModel( "userId", "User", "user" ),
@@ -143,6 +153,8 @@ router.put( "/users/:userId/editMovie/:movieId",
 
 *    @apiGroup User
 *    @api {put} /users/:userId/removeReview/:reviewId remove a review.
+*    @apiParam {String} userId  User ID required.
+*    @apiParam {String} movieId  Review ID required.
 */
 router.delete( "/users/:userId/removeReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
@@ -153,6 +165,8 @@ router.delete( "/users/:userId/removeReview/:reviewId",
 /*
     *    @apiGroup User
     *    @api {put} /users/:userId/spamReview/:reviewId Mark a review as spam.
+    *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} reviewId  Review ID required.
 */
 router.put( "/users/:userId/spamReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
@@ -164,6 +178,8 @@ router.put( "/users/:userId/spamReview/:reviewId",
 /*
     *    @apiGroup User
     *    @api {put} /users/:userId/editReview/:reviewId Edit a review.
+    *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} reviewId  Review ID required.
 */
 router.put( "/users/:userId/editReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
@@ -271,6 +287,7 @@ router.put( "/admins/:adminId/deleteProfile",
 *    @apiGroup Admin
 *    @api {delete} /admins/:adminId/deleteMovie/:movieId Delete a movie from an admin profile.
 *    @apiParam {String} adminId Admin ID required.
+*    @apiParam {String} movieId Movie ID required.
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789

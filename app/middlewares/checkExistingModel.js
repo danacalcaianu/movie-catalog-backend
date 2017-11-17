@@ -1,6 +1,6 @@
 const mongoose = require( "mongoose" );
 
-module.exports = ( reqParameter, model, result, userCheck = false ) => ( req, res, next ) => {
+module.exports = ( reqParameter, model, result, needsAccess = false ) => ( req, res, next ) => {
     let property = reqParameter;
     const identifier = req.params[ reqParameter ] || req.body[ reqParameter ];
 
@@ -12,7 +12,7 @@ module.exports = ( reqParameter, model, result, userCheck = false ) => ( req, re
     }
     const Collection = mongoose.model( model );
 
-    if ( userCheck ) {
+    if ( needsAccess ) {
         return Collection
             .findOne( { [ `${ property }` ]: identifier } )
             .and( [

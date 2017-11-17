@@ -23,3 +23,13 @@ exports.saveChangesToModel = ( res, model ) => {
         return res.success( updatedModel );
     } );
 };
+
+exports.queryModel = ( res, model, query ) => model.find(
+    query,
+    ( err, results ) => {
+        if ( err ) {
+            return res.serverError();
+        }
+        return res.success( results );
+    },
+);

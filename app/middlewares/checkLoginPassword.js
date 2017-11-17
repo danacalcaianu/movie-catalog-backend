@@ -2,15 +2,16 @@ const bcrypt = require( "bcrypt" );
 
 module.exports = ( req, res, next ) => {
     const person = req.user || req.admin;
+    if ( !person ) {
+        return res.unauthorized();
+    }
     if ( !req.body.password ) {
-        res.status( 400 ).send( "password required" );
-        return;
+        return res.status( 400 ).send( "password required" );
     }
-    const password = bcrypt.compareSync( req.body.password, person.password );
 
-    if ( !person || !password ) {
-        res.unauthorized();
-        return;
+    const password = bcrypt.compareSync( req.body.password, person.password );
+    if ( !password ) {
+        return res.unauthorized();
     }
-    next();
+    return next();
 };

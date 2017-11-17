@@ -6,13 +6,11 @@ const checkOwnership = require( "../middlewares/checkOwnership" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
-const getMovieForReview = require( "../middlewares/getMovieForReview" );
-const checkUserAccess = require( "../middlewares/checkUserAccess" );
 const checkEmailExists = require( "../middlewares/checkEmailExists" );
 const checkEmailFormat = require( "../middlewares/checkEmailFormat" );
 const checkPasswordFormat = require( "../middlewares/checkPasswordFormat" );
 const checkLoginPassword = require( "../middlewares/checkLoginPassword" );
-const asignToken = require( "../middlewares/asignToken" );
+const assignToken = require( "../middlewares/assignToken" );
 const hashPassword = require( "../middlewares/hashPassword" );
 const express = require( "express" );
 
@@ -58,10 +56,10 @@ router.post( "/users/registration",
 *      }
 */
 router.post( "/users/login",
-    checkExistingModel( "username", "User", "user" ),
+    checkExistingModel( "username", "User", "user", true ),
     checkLoginPassword,
-    checkUserAccess,
-    asignToken,
+    // checkUserAccess,
+    assignToken,
     usersController.login,
 );
 
@@ -159,39 +157,42 @@ router.put( "/users/:userId/editMovie/:movieId",
 /**
 
 *    @apiGroup User
-*    @api {put} /users/:userId/removeReview/:reviewId remove a review.
+*    @api {put} /users/:userId/:movieId/removeReview/:reviewId remove a review.
 *    @apiParam {String} userId  User ID required.
-*    @apiParam {String} movieId  Review ID required.
+*    @apiParam {String} movieId  Movie ID required.
+*    @apiParam {String} reviewId  Review ID required.
 */
-router.delete( "/users/:userId/removeReview/:reviewId",
+router.delete( "/users/:userId/:movieId/removeReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     usersController.removeReview,
 );
 /*
     *    @apiGroup User
-    *    @api {put} /users/:userId/spamReview/:reviewId Mark a review as spam.
+    *    @api {put} /users/:userId/:movieId/spamReview/:reviewId Mark a review as spam.
     *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} id  Movie ID required.
     *    @apiParam {String} reviewId  Review ID required.
 */
-router.put( "/users/:userId/spamReview/:reviewId",
+router.put( "/users/:userId/:movieId/spamReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     usersController.markReviewAsSpam,
 );
 
 /*
     *    @apiGroup User
-    *    @api {put} /users/:userId/editReview/:reviewId Edit a review.
+    *    @api {put} /users/:userId/:movieId/editReview/:reviewId Edit a review.
     *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} id  Movie ID required.
     *    @apiParam {String} reviewId  Review ID required.
 */
-router.put( "/users/:userId/editReview/:reviewId",
+router.put( "/users/:userId/:movieId/editReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     usersController.editReview,
 );
 
@@ -275,7 +276,7 @@ router.post( "/admins/registration",
 router.post( "/admins/login",
     checkExistingModel( "username", "Admin", "admin" ),
     checkLoginPassword,
-    asignToken,
+    assignToken,
     adminsController.login,
 );
 
@@ -346,18 +347,19 @@ router.put( "/admins/:adminId/block/:userId",
 
 /**
 *    @apiGroup Admin
-*    @api {delete} /admins/:adminId/deleteReview/:reviewId Block a user from an admin profile.
+*    @api {delete} /admins/:adminId/:movieId/deleteReview/:reviewId Delete a review.
 *    @apiParam {String} adminId Admin ID required.
+*    @apiParam {String} movieId Movie ID required.
 *    @apiParam {String} userId User ID required.
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789
 *       }
 */
-router.delete( "/admins/:adminId/deleteReview/:reviewId",
+router.delete( "/admins/:adminId/:movieId/deleteReview/:reviewId",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
-    getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     adminsController.removeReview,
 );
 

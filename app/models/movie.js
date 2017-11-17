@@ -45,6 +45,7 @@ movieSchema.methods.createMovie = function( data ) {
     this.categories = data.categories;
     return this;
 };
+
 movieSchema.methods.addReview = function( body, author ) {
     const { title, description, rating } = body;
     const review = {
@@ -117,12 +118,12 @@ movieSchema.methods.updateRatingAverage = function() {
 
 movieSchema.methods.editMovie = function( body ) {
     const { title, director, picture, releaseDate, description, categories, cast } = body;
-    this.title = title;
+    this.title = title || this.title;
     this.director = director;
     this.releaseDate = releaseDate;
-    this.description = description;
+    this.description = description || this.description;
     this.picture = picture;
-    this.categories = categories;
+    this.categories = categories || this.categories;
     this.cast = cast;
 };
 
@@ -130,4 +131,13 @@ movieSchema.methods.spamReview = function( reviewIndex ) {
     const review = this.reviews[ reviewIndex ];
     review.markedAsSpam = true;
 };
+
+movieSchema.methods.editReview = function( body, index ) {
+    const { title, description, rating } = body;
+    const review = this.reviews[ index ];
+    review.title = title || review.title;
+    review.description = description || review.description;
+    review.rating = rating;
+};
+
 module.exports = mongoose.model( "Movie", movieSchema );

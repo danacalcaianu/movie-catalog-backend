@@ -66,6 +66,9 @@ router.post( "/users/login",
 *    @apiParam {String} password  Mandatory password.
 */
 router.put( "/users/:userId/edit",
+    checkEmailFormat(),
+    checkEmailExists( "User" ),
+    checkEmailExists( "Admin" ),
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     usersController.edit,
@@ -158,6 +161,17 @@ router.put( "/users/:userId/spamReview/:reviewId",
     usersController.markReviewAsSpam,
 );
 
+/*
+    *    @apiGroup User
+    *    @api {put} /users/:userId/editReview/:reviewId Edit a review.
+*/
+router.put( "/users/:userId/editReview/:reviewId",
+    checkExistingModel( "userId", "User", "user" ),
+    validateToken,
+    getMovieForReview,
+    usersController.editReview,
+);
+
 /**
 *    @apiGroup Movie
 *    @api {get} /movies/:movieId/getMovie Get a movie.
@@ -230,6 +244,9 @@ router.post( "/admins/login",
 *    @apiParam {String} password  Mandatory password.
 */
 router.put( "/admins/:adminId/edit",
+    checkEmailFormat(),
+    checkEmailExists( "User" ),
+    checkEmailExists( "Admin" ),
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
     adminsController.edit,

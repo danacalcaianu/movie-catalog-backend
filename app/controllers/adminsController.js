@@ -51,19 +51,11 @@ exports.edit = ( req, res ) => {
     const admin = req.admin;
     const { email, firstName, lastName, avatar } = req.body;
 
-    admin.email = email;
-    admin.firstName = firstName;
-    admin.lastName = lastName;
+    admin.email = email || admin.email;
+    admin.firstName = firstName || admin.firstName;
+    admin.lastName = lastName || admin.lastName;
     admin.avatar = avatar;
-
-    admin.save( ( err, savedAdmin ) => {
-        if ( err ) {
-            return res.validationError( err );
-        }
-        return res.success( extractObject(
-            savedAdmin,
-            [ "id", "email", "firstName", "lastName", "avatar" ] ) );
-    } );
+    saveChangesToModel( res, admin );
 };
 
 exports.deleteProfile = ( req, res ) => {
@@ -79,7 +71,6 @@ exports.deleteProfile = ( req, res ) => {
             [ "id", "deleted" ],
         ) );
     } );
-    res.success( );
 };
 
 exports.deleteMovie = ( req, res ) => {

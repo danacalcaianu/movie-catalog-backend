@@ -58,8 +58,7 @@ exports.edit = ( req, res ) => {
 exports.delete = ( req, res ) => {
     const user = req.user;
     user.deleted = true;
-    user.save();
-    res.success( );
+    saveChangesToModel( res, user );
 };
 
 exports.addMovie = ( req, res ) => {
@@ -72,27 +71,22 @@ exports.addMovie = ( req, res ) => {
 
     movie.addOwner( user.id );
     movie.addId( );
-    movie.save( );
-    return res.success( movie );
+    saveChangesToModel( res, movie );
 };
 
 exports.rateMovie = ( req, res ) => {
     const movie = req.movie;
     movie.addRating( req.body.rating );
     movie.updateRating();
-    movie.save();
-    return res.success( movie );
+    saveChangesToModel( res, movie );
 };
 
 exports.reviewMovie = ( req, res ) => {
     const movie = req.movie;
     const { username } = req.user;
-
     movie.addReview( req.body, username );
     updateRating( movie, req.body.rating, username );
-    movie.save();
-
-    return res.success( movie );
+    saveChangesToModel( res, movie );
 };
 
 exports.editMovie = ( req, res ) => {
@@ -131,5 +125,23 @@ exports.markReviewAsSpam = ( req, res ) => {
 
     const reviewIndex = movie.getReviewIndex( reviewId );
     movie.spamReview( reviewIndex );
+    saveChangesToModel( res, movie );
+};
+
+exports.editReview = ( req, res ) => {
+    const movie = req.movie;
+    const { username } = req.user;
+    const reviewId = req.params.reviewId;
+
+    if ( !movie ) {
+        return res.notFound();
+    }
+    const reviewIndex = movie.getReviewIndex( reviewId );
+    if ( movie.reviews[ reviewIndex ].author !== username ) {
+        return res.unauthorized();
+    }
+    movie.editReview( req.body, reviewIndex );
+    updateRating( movie, req.body.rating, username );
+
     saveChangesToModel( res, movie );
 };

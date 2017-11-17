@@ -31,7 +31,18 @@ userSchema.methods.setId = function () {
 };
 
 userSchema.methods.setPass = function( password ) {
+    // const saltRounds = 10;
     this.password = bcrypt.hashSync( password );
+    // bcrypt.hash( password, saltRounds, null, function( err, hash ) {
+    //     this.password = hash;
+    // } );
+    // console.log( password );
+    // bcrypt.hash( password, saltRounds, function( err, hash ) {
+    //     console.log( "here" );
+    //     console.log( this.password );
+    //     this.password = hash;
+    //     console.log( this.password );
+    // } );
 };
 
 userSchema.methods.setFullName = function( ) {

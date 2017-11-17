@@ -15,7 +15,7 @@ module.exports = ( req, res, next ) => {
         if ( err ) {
             return res.json( {
                 success: false,
-                message: "Failed to authenticate token.",
+                message: "Failed to authenticate",
             } );
         }
         req.decoded = decoded;

@@ -10,7 +10,10 @@ const getMovieForReview = require( "../middlewares/getMovieForReview" );
 const checkUserAccess = require( "../middlewares/checkUserAccess" );
 const checkEmailExists = require( "../middlewares/checkEmailExists" );
 const checkEmailFormat = require( "../middlewares/checkEmailFormat" );
-
+const checkPasswordFormat = require( "../middlewares/checkPasswordFormat" );
+const checkLoginPassword = require( "../middlewares/checkLoginPassword" );
+const asignToken = require( "../middlewares/asignToken" );
+const hashPassword = require( "../middlewares/hashPassword" );
 const express = require( "express" );
 
 const router = express.Router( );
@@ -33,9 +36,11 @@ const router = express.Router( );
 */
 router.post( "/users/registration",
     checkEmailFormat(),
+    checkPasswordFormat(),
     checkExistingModel( "username", "User", "user" ),
     checkEmailExists( "User" ),
     checkEmailExists( "Admin" ),
+    hashPassword(),
     usersController.register,
 );
 
@@ -54,7 +59,9 @@ router.post( "/users/registration",
 */
 router.post( "/users/login",
     checkExistingModel( "username", "User", "user" ),
+    checkLoginPassword(),
     checkUserAccess(),
+    asignToken(),
     usersController.login,
 );
 
@@ -230,7 +237,9 @@ router.post( "/admins/registration",
     checkEmailExists( "User" ),
     checkEmailExists( "Admin" ),
     checkEmailFormat(),
+    checkPasswordFormat(),
     checkExistingModel( "username", "Admin", "admin" ),
+    hashPassword(),
     adminsController.register,
 );
 
@@ -249,6 +258,8 @@ router.post( "/admins/registration",
 */
 router.post( "/admins/login",
     checkExistingModel( "username", "Admin", "admin" ),
+    checkLoginPassword(),
+    asignToken(),
     adminsController.login,
 );
 

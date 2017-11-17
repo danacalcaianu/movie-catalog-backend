@@ -1,11 +1,8 @@
 const mongoose = require( "mongoose" );
 const extractObject = require( "../utilities" ).extractObject;
-const jwt = require( "jsonwebtoken" );
-const bcrypt = require( "bcrypt-nodejs" );
 const saveChangesToModel = require( "../utilities/index" ).saveChangesToModel;
 
 const Admin = mongoose.model( "Admin" );
-const SECRET = "superSuperSecret";
 
 /* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
@@ -15,25 +12,12 @@ exports.register = ( req, res ) => {
     }
     admin = new Admin( req.body );
     admin.setId();
-    admin.setPass( req.body.password );
+    admin.password = req.hash;
     saveChangesToModel( res, admin );
 };
 
 exports.login = ( req, res ) => {
-    const admin = req.admin;
-    if ( !req.body.password ) {
-        res.status( 400 ).send( "password required" );
-        return;
-    }
-    const password = bcrypt.compareSync( req.body.password, admin.password );
-
-    if ( !admin || !password ) {
-        return res.json( {
-            success: false,
-            message: "Authentication failed.",
-        } );
-    }
-    const token = jwt.sign( admin.toObject(), SECRET, { expiresIn: 1440 } );
+    const token = req.token;
     return res.json( {
         success: true,
         token,

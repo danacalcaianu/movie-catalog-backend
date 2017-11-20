@@ -16,8 +16,12 @@ exports.getMovie = ( req, res ) => {
 
 exports.getAllMovies = ( req, res ) => {
     const field = req.body.field;
-
-    queryModel( res, Movie, field );
+    // let iterator = queryModel( res, Movie, field );
+    // console.log(iterator.next());
+    // let secondYield= iterator.next( );
+    // res.success();
+    const movies = queryModel( Movie, field );
+    movies.then( ( results ) => res.success( results ) );
 };
 
 exports.getMoviesForUser = ( req, res ) => {

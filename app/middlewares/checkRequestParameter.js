@@ -6,7 +6,7 @@ module.exports = ( req, res, next ) => {
         req.body.field = {};
         return next();
     }
-    if ( isNaN( parseInt( property, 10 ) ) ) {
+    if ( !Number.isInteger( parseInt( property, 10 ) ) ) {
         property = "categories";
         field[ property ] = req.params.param;
     } else {

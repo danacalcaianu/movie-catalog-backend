@@ -6,7 +6,7 @@ const Movie = mongoose.model( "Movie" );
 
 /* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
-    let user = req.user;
+    let { user } = req;
     if ( user ) {
         return res.preconditionFailed( "existing_user" );
     }
@@ -17,7 +17,7 @@ exports.register = ( req, res ) => {
 };
 
 exports.login = ( req, res ) => {
-    const token = req.token;
+    const { token } = req;
 
     return res.json( {
         success: true,
@@ -26,22 +26,22 @@ exports.login = ( req, res ) => {
 };
 
 exports.edit = ( req, res ) => {
-    const user = req.user;
+    const { user } = req;
 
     user.editUser( req.body );
     saveChangesToModel( res, user );
 };
 
 exports.delete = ( req, res ) => {
-    const user = req.user;
+    const { user } = req;
 
     user.deleted = true;
     saveChangesToModel( res, user );
 };
 
 exports.addMovie = ( req, res ) => {
-    const user = req.user;
-    let movie = req.movie;
+    const { user } = req;
+    let { movie } = req;
 
     if ( movie ) {
         return res.preconditionFailed( "existing_movie" );
@@ -53,14 +53,14 @@ exports.addMovie = ( req, res ) => {
 };
 
 exports.rateMovie = ( req, res ) => {
-    const movie = req.movie;
+    const { movie } = req;
     movie.addRating( req.body.rating );
     movie.updateRating();
     saveChangesToModel( res, movie );
 };
 
 exports.reviewMovie = ( req, res ) => {
-    const movie = req.movie;
+    const { movie } = req;
     const { username } = req.user;
     movie.addReview( req.body, username );
     updateRating( movie, req.body.rating, username );
@@ -68,15 +68,15 @@ exports.reviewMovie = ( req, res ) => {
 };
 
 exports.editMovie = ( req, res ) => {
-    const movie = req.movie;
+    const { movie } = req;
     movie.editMovie( req.body );
     saveChangesToModel( res, movie );
 };
 
 exports.removeReview = ( req, res ) => {
-    const movie = req.movie;
+    const { movie } = req;
     const { username } = req.user;
-    const reviewId = req.params.reviewId;
+    const { reviewId } = req.params;
     const reviewIndex = movie.getReviewIndex( reviewId );
 
     if ( movie.reviews[ reviewIndex ].author !== username ) {
@@ -92,8 +92,8 @@ exports.removeReview = ( req, res ) => {
 };
 
 exports.markReviewAsSpam = ( req, res ) => {
-    const movie = req.movie;
-    const reviewId = req.params.reviewId;
+    const { movie } = req;
+    const { reviewId } = req.params;
     const reviewIndex = movie.getReviewIndex( reviewId );
 
     movie.spamReview( reviewIndex );
@@ -101,9 +101,9 @@ exports.markReviewAsSpam = ( req, res ) => {
 };
 
 exports.editReview = ( req, res ) => {
-    const movie = req.movie;
+    const { movie } = req;
     const { username } = req.user;
-    const reviewId = req.params.reviewId;
+    const { reviewId } = req.params;
     const reviewIndex = movie.getReviewIndex( reviewId );
 
     if ( movie.reviews[ reviewIndex ].author !== username ) {

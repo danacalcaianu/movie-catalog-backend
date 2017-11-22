@@ -1,8 +1,8 @@
 const mongoose = require( "mongoose" );
 
 module.exports = ( req, res, next ) => {
-    const movieId = req.params.movieId;
-    const userId = req.params.userId;
+    const { movieId } = req.params;
+    const { userId } = req.params;
     const Collection = mongoose.model( "Movie" );
     return Collection.findOne(
         { id: movieId },
@@ -14,5 +14,6 @@ module.exports = ( req, res, next ) => {
                 return res.unauthorized();
             }
             return next();
-        } );
+        },
+    );
 };

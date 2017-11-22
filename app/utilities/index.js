@@ -51,6 +51,6 @@ exports.saveChangesToModel = ( res, model ) => {
 // };
 
 exports.queryModel = co.wrap( function* ( model, query ) {
-    let movies = yield model.find( query );
+    const movies = yield model.find( query );
     return movies;
 } );

@@ -1,7 +1,7 @@
 const mongoose = require( "mongoose" );
 const uid = require( "uid" );
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const reviewSchema = new Schema( {
     id: { type: String, required: true },
@@ -117,7 +117,9 @@ movieSchema.methods.updateRatingAverage = function() {
 };
 
 movieSchema.methods.editMovie = function( body ) {
-    const { title, director, picture, releaseDate, description, categories, cast } = body;
+    const {
+        title, director, picture, releaseDate, description, categories, cast,
+    } = body;
     this.title = title || this.title;
     this.director = director;
     this.releaseDate = releaseDate;

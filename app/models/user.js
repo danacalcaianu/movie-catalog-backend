@@ -2,7 +2,7 @@ const mongoose = require( "mongoose" );
 const bcrypt = require( "bcrypt" );
 const uid = require( "uid" );
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const userSchema = new Schema( {
     id: { type: String },
@@ -42,7 +42,9 @@ userSchema.methods.setFullName = function( ) {
 };
 
 userSchema.methods.editUser = function( body ) {
-    const { firstName, lastName, gender, age, categories, avatar, email } = body;
+    const {
+        firstName, lastName, gender, age, categories, avatar, email,
+    } = body;
 
     this.firstName = firstName || this.firstName;
     this.lastName = lastName || this.lastName;

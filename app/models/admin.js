@@ -1,7 +1,7 @@
 const mongoose = require( "mongoose" );
 const bcrypt = require( "bcrypt-nodejs" );
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 const uid = require( "uid" );
 
 const adminSchema = new Schema( {
@@ -26,7 +26,9 @@ adminSchema.methods.setPass = function( password ) {
 };
 
 adminSchema.methods.edit = function ( body ) {
-    const { email, firstName, lastName, avatar } = body;
+    const {
+        email, firstName, lastName, avatar,
+    } = body;
     this.email = email || this.email;
     this.firstName = firstName || this.firstName;
     this.lastName = lastName || this.lastName;

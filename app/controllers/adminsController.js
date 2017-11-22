@@ -6,7 +6,7 @@ const Admin = mongoose.model( "Admin" );
 
 /* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
-    let admin = req.admin;
+    let { admin } = req;
     if ( admin ) {
         return res.preconditionFailed( "existing_admin" );
     }
@@ -17,7 +17,7 @@ exports.register = ( req, res ) => {
 };
 
 exports.login = ( req, res ) => {
-    const token = req.token;
+    const { token } = req;
     return res.json( {
         success: true,
         token,
@@ -25,13 +25,13 @@ exports.login = ( req, res ) => {
 };
 
 exports.edit = ( req, res ) => {
-    const admin = req.admin;
+    const { admin } = req;
     admin.edit( req.body );
     saveChangesToModel( res, admin );
 };
 
 exports.deleteProfile = ( req, res ) => {
-    const admin = req.admin;
+    const { admin } = req;
 
     admin.deleted = true;
     admin.save( ( err, savedAdmin ) => {
@@ -46,8 +46,8 @@ exports.deleteProfile = ( req, res ) => {
 };
 
 exports.deleteMovie = ( req, res ) => {
-    const movie = req.movie;
-    const admin = req.admin;
+    const { movie } = req;
+    const { admin } = req;
 
     movie.deleted = true;
     movie.deletedBy = admin.id;
@@ -63,9 +63,9 @@ exports.deleteMovie = ( req, res ) => {
 };
 
 exports.blockUser = ( req, res ) => {
-    const admin = req.admin;
-    const user = req.user;
-    const blockedReason = req.body.blockedReason;
+    const { admin } = req;
+    const { user } = req;
+    const { blockedReason } = req.body;
 
     user.blocked = true;
     user.blockedBy = admin.id;
@@ -75,8 +75,8 @@ exports.blockUser = ( req, res ) => {
 };
 
 exports.removeReview = ( req, res ) => {
-    const movie = req.movie;
-    const reviewId = req.params.reviewId;
+    const { movie } = req;
+    const { reviewId } = req.params;
     const reviewIndex = movie.getReviewIndex( reviewId );
     const review = movie.getReviewForIndex( reviewIndex );
     const ratingIndex = movie.getRatingIndex( review.author );

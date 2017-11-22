@@ -3,7 +3,7 @@ const mongoose = require( "mongoose" );
 
 const Movie = mongoose.model( "Movie" );
 exports.getMovie = ( req, res ) => {
-    const movie = req.movie;
+    const { movie } = req;
     if ( !movie ) {
         return res.notFound();
     }
@@ -15,14 +15,19 @@ exports.getMovie = ( req, res ) => {
 };
 
 exports.getAllMovies = ( req, res ) => {
-    const field = req.body.field;
+    const { field } = req.body;
     const movies = queryModel( Movie, field );
-    movies.then( ( results ) => res.success( results ) );
+    movies
+        .then( ( results ) => res.success( results ) )
+        .catch( ( err ) => res.send( err ) );
 };
 
 exports.getMoviesForUser = ( req, res ) => {
     const { id } = req.user;
     const queryCondition = { addedBy: id };
 
-    queryModel( res, Movie, queryCondition );
+    const movies = queryModel( Movie, queryCondition );
+    movies
+        .then( ( results ) => res.success( results ) )
+        .catch( ( ) => res.notFound() );
 };

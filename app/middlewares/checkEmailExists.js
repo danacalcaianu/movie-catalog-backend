@@ -1,7 +1,7 @@
 const mongoose = require( "mongoose" );
 
 module.exports = ( collection ) => ( req, res, next ) => {
-    const email = req.body.email;
+    const { email } = req.body;
     const Collection = mongoose.model( collection );
     return Collection.findOne(
         { email },
@@ -13,5 +13,6 @@ module.exports = ( collection ) => ( req, res, next ) => {
                 return res.conflict( "Email already exists!" );
             }
             return next();
-        } );
+        },
+    );
 };

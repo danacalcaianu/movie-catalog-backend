@@ -1,4 +1,3 @@
-const errorsController = require( "../controllers/errorsController" );
 const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
 const adminsController = require( "../controllers/adminsController" );
@@ -383,10 +382,6 @@ router.delete(
     adminsController.removeReview,
 );
 
-router.use( errorsController.notFound );
-
 module.exports = ( app ) => {
     app.use( "/", router );
-    app.use( errorsController.errorLogger );
-    app.use( errorsController.errorHandler );
 };

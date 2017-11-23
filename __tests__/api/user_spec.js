@@ -2,14 +2,16 @@ const frisby = require( "frisby" );
 
 const { Joi } = frisby;
 const mongoose = require( "mongoose" );
+const { Mockgoose } = require( "mockgoose" );
 
+const mockgoose = new Mockgoose( mongoose );
 mongoose.Promise = global.Promise;
 
-const { userSchema } = require( "../../app/models/user" );
-const { movieSchema } = require( "../../app/models/movie" );
+const User = require( "../../app/models/user" );
+// const { movieSchema } = require( "../../app/models/movie" );
 
-const User = mongoose.model( "User", userSchema );
-const Movie = mongoose.model( "Movie", movieSchema );
+// const User = mongoose.model( "User", userSchema );
+// const Movie = mongoose.model( "Movie", movieSchema );
 
 const URL = "http://localhost:3030/users";
 
@@ -35,23 +37,26 @@ let userToken;
 const changedEmail = "changedEmail@fortech.ro";
 const invalidUser = Object.assign( {}, user, { email: changedEmail } );
 
-describe( "User", () => {
-    afterAll( () => {
+/* eslint no-undef: off */
+describe( "User", ( ) => {
+    beforeAll( ( ) => {
+        mockgoose.prepareStorage().then( ( ) => {
+            mongoose.connect( "mongodb://localhost:27017/movieCatalog" );
+            console.log( "db connection is now open" );
+        } );
+    } );
+
+    afterAll( ( ) => {
         User
-            .find( { username: user.username } )
-            .remove()
-            .exec( ( err, found ) => {
-                console.log( "here>" );
-                console.log( found );
-            } );
-        Movie
-            .find( { title: movie.title } )
-            .remove()
-            .exec( ( err, found ) => {
-                console.log( found );
+            .findOne( { username: user.username } )
+            .exec( )
+            .then( ( foundUser ) => {
+                console.log( foundUser );
+                // return User.remove( foundUser ).exec()
+                //     .then( () => console.log( "removed" ) );
             } );
     } );
-    /* eslint no-undef: off */
+
     it( "Should be able to register a new user", ( done ) => {
         frisby
             .post( `${ URL }/registration`, user, { json: true } )

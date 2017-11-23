@@ -16,8 +16,16 @@ const user = {
 
 };
 
+const movie = {
+    title: "Baby Driver",
+    description: "has good music",
+    categories: "Comedy",
+    director: "Edgar Wright",
+};
+
 let userToken;
-// const changedEmail = "changedEmail@fortech.ro";
+const changedEmail = "changedEmail@fortech.ro";
+const invalidUser = Object.assign( {}, user, { email: changedEmail } );
 
 /* eslint no-undef: off */
 it( "Should be able to register a new user", ( done ) => {
@@ -40,7 +48,24 @@ it( "Should be able to register a new user", ( done ) => {
         .done( done );
 } );
 
-it( "Should be able to login with an existing user and update it", ( done ) => {
+it( "Should be able to not register an existing user", ( done ) => {
+    frisby
+        .post( `${ URL }/registration`, invalidUser, { json: true } )
+        .expect( "status", 412 )
+        // .expect( "status", 409 )
+        .expect( "header", "Content-Type", "application/json; charset=utf-8" )
+        .expect( "json", "success", false )
+        .expect( "json", "error", "existing_user" )
+        .expect( "jsonTypes", {
+            success: Joi.boolean().required(),
+        } )
+        .expect( "jsonTypes", {
+            error: Joi.string().required(),
+        } )
+        .done( done );
+} );
+
+it( "Should be able to login with an existing user", ( done ) => {
     frisby
         .post( `${ URL }/login`, {
             username: "nelutzu0mat",
@@ -57,37 +82,110 @@ it( "Should be able to login with an existing user and update it", ( done ) => {
         } )
         .then( ( res ) => {
             userToken = res.json.token;
-            const changedEmail = "changedEmail@fortech.ro";
-
-            return frisby
-                .put(
-                    `${ URL }/${ user.id }/edit`,
-                    { email: changedEmail, token: userToken },
-                    { json: true },
-                )
-                .expect( "status", 200 )
-                .expect( "header", "Content-Type", "application/json; charset=utf-8" )
-                .expect( "json", "success", true, "payload.email", changedEmail )
-                .then( result => {
-                    user.email = result.json.payload.email;
-                } );
+            Object.assign( movie, { token: userToken } );
         } )
         .done( done );
 } );
 
-it( "Should be able to not register an existing user", ( done ) => {
+it( "Should be able to modify a logged in user", ( done ) => {
     frisby
-        .post( `${ URL }/registration`, user, { json: true } )
-        // .expect( "status", 412 )
-        .expect( "status", 409 )
+        .put(
+            `${ URL }/${ user.id }/edit`,
+            { email: changedEmail, token: userToken },
+            { json: true },
+        )
+        .expect( "status", 200 )
+        .expect( "header", "Content-Type", "application/json; charset=utf-8" )
+        .expect( "json", "success", true )
+        .expect( "json", "payload.email", changedEmail )
+        .then( result => {
+            user.email = result.json.payload.email;
+        } )
+        .done( done );
+} );
+
+it( "Should be able to add a movie and edit it", ( done ) => {
+    frisby
+        .put(
+            `${ URL }/${ user.id }/addMovie`,
+            movie,
+            { json: true },
+        )
+        .expect( "status", 200 )
+        .expect( "header", "Content-Type", "application/json; charset=utf-8" )
+        .expect( "json", "success", true )
+        .expect( "json", "payload.title", movie.title )
+        .then( ( res ) => {
+            movie.id = res.json.payload.id;
+
+            return frisby
+                .put(
+                    `${ URL }/${ user.id }/editMovie/${ movie.id }`,
+                    { categories: "Action", token: userToken },
+                    { json: true },
+                )
+                .expect( "status", 200 )
+                .expect( "header", "Content-Type", "application/json; charset=utf-8" )
+                .expect( "json", "success", true )
+                .expect( "json", "payload.categories", "Action" );
+        } )
+        .done( done );
+} );
+
+it( "Should be able to not add a movie with missing parameters", ( done ) => {
+    frisby
+        .put(
+            `${ URL }/${ user.id }/addMovie`,
+            { title: "mock title", description: movie.description, token: userToken },
+            { json: true },
+        )
+        .expect( "status", 422 )
         .expect( "header", "Content-Type", "application/json; charset=utf-8" )
         .expect( "json", "success", false )
-        .expect( "json", "error", "Email already exists!" )
-        .expect( "jsonTypes", {
-            success: Joi.boolean().required(),
+        .expect( "json", "error", "unprocessable_entity" )
+        .done( done );
+} );
+
+it( "Should be able to add a review for a movie and then delete it", ( done ) => {
+    frisby
+        .put(
+            `${ URL }/${ user.id }/reviewMovie/${ movie.id }`,
+            {
+                title: "pretty good",
+                description: "i thought it was funny and had great music",
+                author: user.id,
+                rating: 4.5,
+                token: userToken,
+            },
+            { json: true },
+        )
+        .expect( "status", 200 )
+        .expect( "header", "Content-Type", "application/json; charset=utf-8" )
+        .expect( "json", "success", true )
+        .then( res => {
+            const { reviews } = res.json.payload;
+            const index = reviews.map( review => review.author ).indexOf( user.username );
+            const { rating, id } = reviews[ index ];
+            expect( rating ).toEqual( 4.5 );
+
+            return frisby
+                .put(
+                    `${ URL }/${ user.id }/removeReview/${ movie.id }`,
+                    {
+                        title: "pretty good",
+                        description: "i thought it was funny and had great music",
+                        author: user.id,
+                        rating: 4.5,
+                        token: userToken,
+                    },
+                    { json: true },
+                )
+                .expect( "status", 200 )
+                .expect( "header", "Content-Type", "application/json; charset=utf-8" )
+                .expect( "json", "success", true );
         } )
         .expect( "jsonTypes", {
-            error: Joi.string().required(),
+            success: Joi.boolean().required(),
         } )
         .done( done );
 } );

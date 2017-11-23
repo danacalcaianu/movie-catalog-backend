@@ -166,42 +166,46 @@ router.put(
 /**
 
 *    @apiGroup User
-*    @api {put} /users/:userId/removeReview/:reviewId Remove a review.
-*    @apiParam {String} userId  User ID required.
-*    @apiParam {String} movieId  Review ID required.
+*    @api {put} /users/:userId/:movieId/removeReview/:reviewId Remove a review.
+*    @apiParam {String} userId User ID required.
+*    @apiParam {String} movieId Movie ID required.
+*    @apiParam {String} reviewId Review ID required.
+
 */
 router.delete(
-    "/users/:userId/removeReview/:reviewId",
+    "/users/:userId/:movieId/removeReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    // getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     usersController.removeReview,
 );
 /*
     *    @apiGroup User
-    *    @api {put} /users/:userId/spamReview/:reviewId Mark a review as spam.
+    *    @api {put} /users/:userId/:movieId/spamReview/:reviewId Mark a review as spam.
     *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} movieId Movie ID required.
     *    @apiParam {String} reviewId  Review ID required.
 */
 router.put(
-    "/users/:userId/spamReview/:reviewId",
+    "/users/:userId/:movieId/spamReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    // getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     usersController.markReviewAsSpam,
 );
 
 /*
     *    @apiGroup User
-    *    @api {put} /users/:userId/editReview/:reviewId Edit a review.
+    *    @api {put} /users/:userId/:movieId/editReview/:reviewId Edit a review.
     *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} movieId Movie ID required.
     *    @apiParam {String} reviewId  Review ID required.
 */
 router.put(
-    "/users/:userId/editReview/:reviewId",
+    "/users/:userId/:movieId/editReview/:reviewId",
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
-    // getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     usersController.editReview,
 );
 
@@ -361,19 +365,21 @@ router.put(
 
 /**
 *    @apiGroup Admin
-*    @api {delete} /admins/:adminId/deleteReview/:reviewId Block a user from an admin profile.
+*    @api {delete} /admins/:adminId/:movieId/deleteReview/:reviewId Remove a review an admin profile.
 *    @apiParam {String} adminId Admin ID required.
-*    @apiParam {String} userId User ID required.
+*    @apiParam {String} movieId Movie ID required.
+*    @apiParam {String} reviewId Review ID required.
+
 *    @apiHeaderExample Example header
 *       {
 *           id:123456789
 *       }
 */
 router.delete(
-    "/admins/:adminId/deleteReview/:reviewId",
+    "/admins/:adminId/:movieId/deleteReview/:reviewId",
     checkExistingModel( "adminId", "Admin", "admin" ),
     validateToken,
-    // getMovieForReview,
+    checkExistingModel( "movieId", "Movie", "movie" ),
     adminsController.removeReview,
 );
 

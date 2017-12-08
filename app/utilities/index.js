@@ -41,14 +41,17 @@ exports.saveChangesToModel = ( res, model ) => {
 //     return res.success( results );
 // } );
 
-// exports.queryModel = async ( res, model, query ) => {
-//     try {
-//         const movies = await model.find( query );
-//         return res.success( movies );
-//     } catch ( err ) {
-//         res.notFound( );
-//     }
-// };
+exports.queryBatch = async ( model, number, limitSize ) => {
+    try {
+        const movies = await model
+            .find()
+            .skip( limitSize * number )
+            .limit( limitSize );
+        return movies;
+    } catch ( err ) {
+        return err;
+    }
+};
 
 exports.queryModel = co.wrap( function* ( model, query ) {
     const movies = yield model.find( query );

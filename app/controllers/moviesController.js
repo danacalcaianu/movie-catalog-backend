@@ -1,4 +1,4 @@
-const { extractObject, queryModel } = require( "../utilities" );
+const { extractObject, queryModel, queryBatch } = require( "../utilities" );
 const mongoose = require( "mongoose" );
 
 const Movie = mongoose.model( "Movie" );
@@ -27,6 +27,16 @@ exports.getMoviesForUser = ( req, res ) => {
     const queryCondition = { addedBy: id };
 
     const movies = queryModel( Movie, queryCondition );
+    movies
+        .then( ( results ) => res.success( results ) )
+        .catch( ( ) => res.notFound() );
+};
+
+exports.getBatchOfMovies = async ( req, res ) => {
+    const { page: pageNumber } = req.params;
+    const limit = 10;
+
+    const movies = queryBatch( Movie, pageNumber, limit );
     movies
         .then( ( results ) => res.success( results ) )
         .catch( ( ) => res.notFound() );

@@ -234,6 +234,16 @@ router.get(
 
 /**
 *    @apiGroup Movie
+*    @api {get} /movies/getBatch/:page Get a certain number of movies.
+*    @apiDescription returns a limited number of movies based on the page parameter
+*/
+router.get(
+    "/movies/getBatch/:page",
+    moviesController.getBatchOfMovies,
+);
+
+/**
+*    @apiGroup Movie
 *    @api {get} /movies/:userId/getUserMovies Get all movies for user.
 *    @apiDescription returns all movies for a given user
 *    @apiParam {String} id  User ID required.

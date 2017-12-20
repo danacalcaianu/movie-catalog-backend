@@ -15,10 +15,18 @@ exports.getMovie = ( req, res ) => {
 };
 
 exports.getAllMovies = ( req, res ) => {
-    const { field } = req.body;
+    const field = undefined;
+    const { param } = req.params;
     const movies = queryModel( Movie, field );
     movies
-        .then( ( results ) => res.success( results ) )
+        .then( ( results ) => {
+            if ( param ) {
+                const final = results.filter( ( item ) => item.title.indexOf( param ) !== -1 );
+                res.success( final );
+                return;
+            }
+            res.success( results );
+        } )
         .catch( ( err ) => res.send( err ) );
 };
 

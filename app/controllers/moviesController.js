@@ -21,7 +21,7 @@ exports.getAllMovies = ( req, res ) => {
     movies
         .then( ( results ) => {
             if ( param ) {
-                const final = results.filter( ( item ) => item.title.indexOf( param ) !== -1 );
+                const final = results.filter( ( item ) => item.title.toLowerCase().indexOf( param.toLowerCase() ) !== -1 );
                 res.success( final );
                 return;
             }

@@ -54,8 +54,11 @@ exports.addMovie = ( req, res ) => {
 
 exports.rateMovie = ( req, res ) => {
     const { movie } = req;
-    movie.addRating( req.body.rating );
-    movie.updateRating();
+    const { id } = req.user;
+    const { rating } = req.body;
+
+    updateRating( movie, rating, id );
+    movie.updateRatingAverage();
     saveChangesToModel( res, movie );
 };
 

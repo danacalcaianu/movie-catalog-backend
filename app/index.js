@@ -4,6 +4,7 @@ const logger = require( "./utilities/logger" );
 const helmet = require( "helmet" );
 const config = require( "./config" );
 const customResponses = require( "./middlewares/customResponses" );
+const cors = require( "cors" );
 
 const app = express( );
 const port = process.env.PORT || config.port;
@@ -20,6 +21,18 @@ app.use( ( req, res, next ) => {
     res.header( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
     next();
 } );
+
+const originsWhitelist = [
+    "http://localhost:4200", // this is my front-end url for development
+];
+const corsOptions = {
+    origin( origin, callback ) {
+        const isWhitelisted = originsWhitelist.indexOf( origin ) !== -1;
+        callback( null, isWhitelisted );
+    },
+    credentials: true,
+};
+app.use( cors( corsOptions ) );
 
 app.use( bodyParser.json( ) );
 app.use( customResponses );

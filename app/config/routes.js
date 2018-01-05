@@ -128,7 +128,7 @@ router.put(
 router.put(
     "/users/:userId/rateMovie/:movieId",
     checkExistingModel( "userId", "User", "user" ),
-    validateToken,
+    // validateToken,
     checkExistingModel( "movieId", "Movie", "movie" ),
     usersController.rateMovie,
 );

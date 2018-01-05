@@ -7,18 +7,22 @@ exports.getMovie = ( req, res ) => {
     if ( !movie ) {
         return res.notFound();
     }
-    return res.success( extractObject(
-        movie,
-        [ "title", "description", "director", "categories",
-            "cast", "rating", "releaseDate", "reviews", "picture" ],
-    ) );
+    return res.success( movie );
 };
 
 exports.getAllMovies = ( req, res ) => {
-    const { field } = req.body;
+    const field = undefined;
+    const { param } = req.params;
     const movies = queryModel( Movie, field );
     movies
-        .then( ( results ) => res.success( results ) )
+        .then( ( results ) => {
+            if ( param ) {
+                const final = results.filter( ( item ) => item.title.toLowerCase().indexOf( param.toLowerCase() ) !== -1 );
+                res.success( final );
+                return;
+            }
+            res.success( results );
+        } )
         .catch( ( err ) => res.send( err ) );
 };
 

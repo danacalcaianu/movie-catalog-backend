@@ -176,3 +176,259 @@
 {"level":"warn","message":"Warning message","timestamp":"3:58:58 PM"}
 {"level":"info","message":"Info message","timestamp":"3:58:59 PM"}
 {"level":"warn","message":"Warning message","timestamp":"3:58:59 PM"}
+{"level":"info","message":"Info message","timestamp":"14:57:39"}
+{"level":"warn","message":"Warning message","timestamp":"14:57:39"}
+{"level":"info","message":"Info message","timestamp":"15:16:55"}
+{"level":"warn","message":"Warning message","timestamp":"15:16:55"}
+{"level":"info","message":"Info message","timestamp":"13:33:39"}
+{"level":"warn","message":"Warning message","timestamp":"13:33:39"}
+{"level":"info","message":"Info message","timestamp":"14:25:59"}
+{"level":"warn","message":"Warning message","timestamp":"14:25:59"}
+{"level":"info","message":"Info message","timestamp":"14:30:48"}
+{"level":"warn","message":"Warning message","timestamp":"14:30:48"}
+{"level":"info","message":"Info message","timestamp":"14:31:34"}
+{"level":"warn","message":"Warning message","timestamp":"14:31:34"}
+{"level":"info","message":"Info message","timestamp":"14:32:15"}
+{"level":"warn","message":"Warning message","timestamp":"14:32:15"}
+{"level":"info","message":"Info message","timestamp":"14:32:24"}
+{"level":"warn","message":"Warning message","timestamp":"14:32:24"}
+{"level":"info","message":"Info message","timestamp":"14:33:21"}
+{"level":"warn","message":"Warning message","timestamp":"14:33:21"}
+{"level":"info","message":"Info message","timestamp":"14:33:22"}
+{"level":"warn","message":"Warning message","timestamp":"14:33:22"}
+{"level":"info","message":"Info message","timestamp":"14:33:25"}
+{"level":"warn","message":"Warning message","timestamp":"14:33:25"}
+{"level":"info","message":"Info message","timestamp":"14:34:11"}
+{"level":"warn","message":"Warning message","timestamp":"14:34:11"}
+{"level":"info","message":"Info message","timestamp":"14:34:37"}
+{"level":"warn","message":"Warning message","timestamp":"14:34:37"}
+{"level":"info","message":"Info message","timestamp":"14:35:05"}
+{"level":"warn","message":"Warning message","timestamp":"14:35:05"}
+{"level":"info","message":"Info message","timestamp":"14:35:15"}
+{"level":"warn","message":"Warning message","timestamp":"14:35:15"}
+{"level":"info","message":"Info message","timestamp":"14:36:46"}
+{"level":"warn","message":"Warning message","timestamp":"14:36:46"}
+{"level":"info","message":"Info message","timestamp":"14:37:05"}
+{"level":"warn","message":"Warning message","timestamp":"14:37:05"}
+{"level":"info","message":"Info message","timestamp":"14:37:13"}
+{"level":"warn","message":"Warning message","timestamp":"14:37:13"}
+{"level":"info","message":"Info message","timestamp":"14:37:17"}
+{"level":"warn","message":"Warning message","timestamp":"14:37:17"}
+{"level":"info","message":"Info message","timestamp":"14:37:46"}
+{"level":"warn","message":"Warning message","timestamp":"14:37:46"}
+{"level":"info","message":"Info message","timestamp":"14:37:49"}
+{"level":"warn","message":"Warning message","timestamp":"14:37:49"}
+{"level":"info","message":"Info message","timestamp":"14:39:40"}
+{"level":"warn","message":"Warning message","timestamp":"14:39:40"}
+{"level":"info","message":"Info message","timestamp":"14:39:40"}
+{"level":"warn","message":"Warning message","timestamp":"14:39:41"}
+{"level":"info","message":"Info message","timestamp":"14:39:42"}
+{"level":"warn","message":"Warning message","timestamp":"14:39:42"}
+{"level":"info","message":"Info message","timestamp":"14:40:09"}
+{"level":"warn","message":"Warning message","timestamp":"14:40:09"}
+{"level":"info","message":"Info message","timestamp":"14:40:32"}
+{"level":"warn","message":"Warning message","timestamp":"14:40:32"}
+{"level":"info","message":"Info message","timestamp":"14:40:33"}
+{"level":"warn","message":"Warning message","timestamp":"14:40:33"}
+{"level":"info","message":"Info message","timestamp":"14:41:08"}
+{"level":"warn","message":"Warning message","timestamp":"14:41:08"}
+{"level":"info","message":"Info message","timestamp":"14:41:12"}
+{"level":"warn","message":"Warning message","timestamp":"14:41:12"}
+{"level":"info","message":"Info message","timestamp":"14:41:37"}
+{"level":"warn","message":"Warning message","timestamp":"14:41:37"}
+{"level":"info","message":"Info message","timestamp":"14:41:50"}
+{"level":"warn","message":"Warning message","timestamp":"14:41:50"}
+{"level":"info","message":"Info message","timestamp":"14:42:16"}
+{"level":"warn","message":"Warning message","timestamp":"14:42:16"}
+{"level":"info","message":"Info message","timestamp":"14:43:04"}
+{"level":"warn","message":"Warning message","timestamp":"14:43:04"}
+{"level":"info","message":"Info message","timestamp":"14:43:11"}
+{"level":"warn","message":"Warning message","timestamp":"14:43:11"}
+{"level":"info","message":"Info message","timestamp":"14:43:17"}
+{"level":"warn","message":"Warning message","timestamp":"14:43:17"}
+{"level":"info","message":"Info message","timestamp":"14:43:25"}
+{"level":"warn","message":"Warning message","timestamp":"14:43:25"}
+{"level":"info","message":"Info message","timestamp":"14:44:09"}
+{"level":"warn","message":"Warning message","timestamp":"14:44:09"}
+{"level":"info","message":"Info message","timestamp":"14:47:06"}
+{"level":"warn","message":"Warning message","timestamp":"14:47:06"}
+{"level":"info","message":"Info message","timestamp":"14:47:28"}
+{"level":"warn","message":"Warning message","timestamp":"14:47:28"}
+{"level":"info","message":"Info message","timestamp":"14:48:09"}
+{"level":"warn","message":"Warning message","timestamp":"14:48:09"}
+{"level":"info","message":"Info message","timestamp":"14:48:37"}
+{"level":"warn","message":"Warning message","timestamp":"14:48:37"}
+{"level":"info","message":"Info message","timestamp":"14:49:24"}
+{"level":"warn","message":"Warning message","timestamp":"14:49:24"}
+{"level":"info","message":"Info message","timestamp":"14:49:42"}
+{"level":"warn","message":"Warning message","timestamp":"14:49:42"}
+{"level":"info","message":"Info message","timestamp":"14:50:47"}
+{"level":"warn","message":"Warning message","timestamp":"14:50:47"}
+{"level":"info","message":"Info message","timestamp":"14:50:57"}
+{"level":"warn","message":"Warning message","timestamp":"14:50:57"}
+{"level":"info","message":"Info message","timestamp":"14:50:59"}
+{"level":"warn","message":"Warning message","timestamp":"14:50:59"}
+{"level":"info","message":"Info message","timestamp":"14:51:32"}
+{"level":"warn","message":"Warning message","timestamp":"14:51:32"}
+{"level":"info","message":"Info message","timestamp":"14:51:39"}
+{"level":"warn","message":"Warning message","timestamp":"14:51:39"}
+{"level":"info","message":"Info message","timestamp":"14:52:20"}
+{"level":"warn","message":"Warning message","timestamp":"14:52:20"}
+{"level":"info","message":"Info message","timestamp":"14:52:38"}
+{"level":"warn","message":"Warning message","timestamp":"14:52:38"}
+{"level":"info","message":"Info message","timestamp":"14:54:48"}
+{"level":"warn","message":"Warning message","timestamp":"14:54:48"}
+{"level":"info","message":"Info message","timestamp":"14:55:06"}
+{"level":"warn","message":"Warning message","timestamp":"14:55:06"}
+{"level":"info","message":"Info message","timestamp":"14:56:01"}
+{"level":"warn","message":"Warning message","timestamp":"14:56:01"}
+{"level":"error","message":"TypeError: Cannot destructure property `field` of 'undefined' or 'null'.\n    at exports.getAllMovies (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/moviesController.js:18:23)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at module.exports (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkRequestParameter.js:7:16)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Route.dispatch (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:112:3)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/index.js:281:22\n    at param (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/index.js:354:14)\n    at param (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/index.js:365:14)\n    at Function.process_params (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/index.js:410:3)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/index.js:275:10)\n    at Function.handle (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/index.js:174:3)\n    at router (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/index.js:47:12)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)","timestamp":"14:56:06"}
+{"level":"info","message":"Info message","timestamp":"14:56:14"}
+{"level":"warn","message":"Warning message","timestamp":"14:56:14"}
+{"level":"info","message":"Info message","timestamp":"14:56:43"}
+{"level":"warn","message":"Warning message","timestamp":"14:56:43"}
+{"level":"info","message":"Info message","timestamp":"14:57:09"}
+{"level":"warn","message":"Warning message","timestamp":"14:57:09"}
+{"level":"info","message":"Info message","timestamp":"14:57:26"}
+{"level":"warn","message":"Warning message","timestamp":"14:57:26"}
+{"level":"info","message":"Info message","timestamp":"14:58:13"}
+{"level":"warn","message":"Warning message","timestamp":"14:58:13"}
+{"level":"info","message":"Info message","timestamp":"14:58:43"}
+{"level":"warn","message":"Warning message","timestamp":"14:58:43"}
+{"level":"info","message":"Info message","timestamp":"14:58:46"}
+{"level":"warn","message":"Warning message","timestamp":"14:58:46"}
+{"level":"info","message":"Info message","timestamp":"14:59:03"}
+{"level":"warn","message":"Warning message","timestamp":"14:59:03"}
+{"level":"info","message":"Info message","timestamp":"14:59:35"}
+{"level":"warn","message":"Warning message","timestamp":"14:59:35"}
+{"level":"info","message":"Info message","timestamp":"15:00:04"}
+{"level":"warn","message":"Warning message","timestamp":"15:00:04"}
+{"level":"info","message":"Info message","timestamp":"15:00:05"}
+{"level":"warn","message":"Warning message","timestamp":"15:00:05"}
+{"level":"info","message":"Info message","timestamp":"15:00:43"}
+{"level":"warn","message":"Warning message","timestamp":"15:00:43"}
+{"level":"info","message":"Info message","timestamp":"15:00:53"}
+{"level":"warn","message":"Warning message","timestamp":"15:00:53"}
+{"level":"info","message":"Info message","timestamp":"15:01:12"}
+{"level":"warn","message":"Warning message","timestamp":"15:01:12"}
+{"level":"info","message":"Info message","timestamp":"15:01:34"}
+{"level":"warn","message":"Warning message","timestamp":"15:01:34"}
+{"level":"info","message":"Info message","timestamp":"15:01:46"}
+{"level":"warn","message":"Warning message","timestamp":"15:01:46"}
+{"level":"info","message":"Info message","timestamp":"15:02:48"}
+{"level":"warn","message":"Warning message","timestamp":"15:02:48"}
+{"level":"info","message":"Info message","timestamp":"15:06:25"}
+{"level":"warn","message":"Warning message","timestamp":"15:06:25"}
+{"level":"info","message":"Info message","timestamp":"15:11:26"}
+{"level":"warn","message":"Warning message","timestamp":"15:11:26"}
+{"level":"info","message":"Info message","timestamp":"15:13:50"}
+{"level":"warn","message":"Warning message","timestamp":"15:13:50"}
+{"level":"info","message":"Info message","timestamp":"15:16:23"}
+{"level":"warn","message":"Warning message","timestamp":"15:16:23"}
+{"level":"info","message":"Info message","timestamp":"13:11:23"}
+{"level":"warn","message":"Warning message","timestamp":"13:11:23"}
+{"level":"info","message":"Info message","timestamp":"13:12:16"}
+{"level":"warn","message":"Warning message","timestamp":"13:12:16"}
+{"level":"info","message":"Info message","timestamp":"09:10:01"}
+{"level":"warn","message":"Warning message","timestamp":"09:10:01"}
+{"level":"info","message":"Info message","timestamp":"09:11:06"}
+{"level":"warn","message":"Warning message","timestamp":"09:11:06"}
+{"level":"info","message":"Info message","timestamp":"11:17:17"}
+{"level":"warn","message":"Warning message","timestamp":"11:17:17"}
+{"level":"info","message":"Info message","timestamp":"11:17:37"}
+{"level":"warn","message":"Warning message","timestamp":"11:17:37"}
+{"level":"info","message":"Info message","timestamp":"12:52:33"}
+{"level":"warn","message":"Warning message","timestamp":"12:52:33"}
+{"level":"info","message":"Info message","timestamp":"12:57:23"}
+{"level":"warn","message":"Warning message","timestamp":"12:57:23"}
+{"level":"error","message":"TypeError: Cannot read property 'addRating' of null\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:57:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:05:54"}
+{"level":"error","message":"TypeError: Cannot read property 'addRating' of null\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:57:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:08:06"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:93:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:08:26"}
+{"level":"info","message":"Info message","timestamp":"13:16:07"}
+{"level":"warn","message":"Warning message","timestamp":"13:16:07"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:93:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:59:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:16:13"}
+{"level":"info","message":"Info message","timestamp":"13:16:54"}
+{"level":"warn","message":"Warning message","timestamp":"13:16:54"}
+{"level":"info","message":"Info message","timestamp":"13:16:59"}
+{"level":"warn","message":"Warning message","timestamp":"13:16:59"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:93:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:59:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:17:01"}
+{"level":"info","message":"Info message","timestamp":"13:17:42"}
+{"level":"warn","message":"Warning message","timestamp":"13:17:42"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:59:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:17:45"}
+{"level":"info","message":"Info message","timestamp":"13:18:02"}
+{"level":"warn","message":"Warning message","timestamp":"13:18:02"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:59:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:18:05"}
+{"level":"info","message":"Info message","timestamp":"13:18:12"}
+{"level":"warn","message":"Warning message","timestamp":"13:18:12"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:59:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:18:13"}
+{"level":"info","message":"Info message","timestamp":"13:18:21"}
+{"level":"warn","message":"Warning message","timestamp":"13:18:21"}
+{"level":"info","message":"Info message","timestamp":"13:18:25"}
+{"level":"warn","message":"Warning message","timestamp":"13:18:25"}
+{"level":"info","message":"Info message","timestamp":"13:18:29"}
+{"level":"warn","message":"Warning message","timestamp":"13:18:29"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:93:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:18:30"}
+{"level":"info","message":"Info message","timestamp":"13:18:45"}
+{"level":"warn","message":"Warning message","timestamp":"13:18:45"}
+{"level":"info","message":"Info message","timestamp":"13:18:51"}
+{"level":"warn","message":"Warning message","timestamp":"13:18:51"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:18:54"}
+{"level":"info","message":"Info message","timestamp":"13:19:02"}
+{"level":"warn","message":"Warning message","timestamp":"13:19:02"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:19:03"}
+{"level":"info","message":"Info message","timestamp":"13:19:11"}
+{"level":"warn","message":"Warning message","timestamp":"13:19:11"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:93:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:19:12"}
+{"level":"info","message":"Info message","timestamp":"13:19:16"}
+{"level":"warn","message":"Warning message","timestamp":"13:19:16"}
+{"level":"info","message":"Info message","timestamp":"13:20:41"}
+{"level":"warn","message":"Warning message","timestamp":"13:20:41"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:20:43"}
+{"level":"info","message":"Info message","timestamp":"13:20:50"}
+{"level":"warn","message":"Warning message","timestamp":"13:20:50"}
+{"level":"info","message":"Info message","timestamp":"13:21:15"}
+{"level":"warn","message":"Warning message","timestamp":"13:21:15"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:21:17"}
+{"level":"info","message":"Info message","timestamp":"13:21:33"}
+{"level":"warn","message":"Warning message","timestamp":"13:21:33"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:21:40"}
+{"level":"info","message":"Info message","timestamp":"13:21:50"}
+{"level":"warn","message":"Warning message","timestamp":"13:21:50"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:21:52"}
+{"level":"error","message":"SyntaxError: Unexpected string in JSON at position 21\n    at JSON.parse (<anonymous>)\n    at parse (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/body-parser/lib/types/json.js:88:17)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/body-parser/lib/read.js:116:18\n    at invokeCallback (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/raw-body/index.js:262:16)\n    at done (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/raw-body/index.js:251:7)\n    at IncomingMessage.onEnd (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/raw-body/index.js:307:7)\n    at emitNone (events.js:106:13)\n    at IncomingMessage.emit (events.js:208:7)\n    at endReadableNT (_stream_readable.js:1056:12)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","timestamp":"13:22:41"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:22:43"}
+{"level":"info","message":"Info message","timestamp":"13:23:50"}
+{"level":"warn","message":"Warning message","timestamp":"13:23:50"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:59:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:23:51"}
+{"level":"info","message":"Info message","timestamp":"13:23:59"}
+{"level":"warn","message":"Warning message","timestamp":"13:23:59"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:59:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:24:01"}
+{"level":"info","message":"Info message","timestamp":"13:24:17"}
+{"level":"warn","message":"Warning message","timestamp":"13:24:17"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:24:23"}
+{"level":"info","message":"Info message","timestamp":"13:24:55"}
+{"level":"warn","message":"Warning message","timestamp":"13:24:55"}
+{"level":"error","message":"TypeError: Cannot set property 'rating' of undefined\n    at model.movieSchema.methods.updateRating (/Users/daniela.calcaianu/Desktop/movie-catalog/app/models/movie.js:94:26)\n    at exports.rateMovie (/Users/daniela.calcaianu/Desktop/movie-catalog/app/controllers/usersController.js:58:11)\n    at Layer.handle [as handle_request] (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/Users/daniela.calcaianu/Desktop/movie-catalog/app/middlewares/checkExistingModel.js:37:20)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"13:24:57"}
+{"level":"info","message":"Info message","timestamp":"13:26:45"}
+{"level":"warn","message":"Warning message","timestamp":"13:26:45"}
+{"level":"info","message":"Info message","timestamp":"13:26:50"}
+{"level":"warn","message":"Warning message","timestamp":"13:26:50"}
+{"level":"info","message":"Info message","timestamp":"13:27:03"}
+{"level":"warn","message":"Warning message","timestamp":"13:27:03"}
+{"level":"info","message":"Info message","timestamp":"13:30:47"}
+{"level":"warn","message":"Warning message","timestamp":"13:30:47"}
+{"level":"info","message":"Info message","timestamp":"13:36:49"}
+{"level":"warn","message":"Warning message","timestamp":"13:36:49"}
+{"level":"info","message":"Info message","timestamp":"13:38:41"}
+{"level":"warn","message":"Warning message","timestamp":"13:38:41"}
+{"level":"info","message":"Info message","timestamp":"13:39:10"}
+{"level":"warn","message":"Warning message","timestamp":"13:39:10"}
+{"level":"info","message":"Info message","timestamp":"13:47:23"}
+{"level":"warn","message":"Warning message","timestamp":"13:47:23"}
+{"level":"info","message":"Info message","timestamp":"13:48:02"}
+{"level":"warn","message":"Warning message","timestamp":"13:48:02"}
+{"level":"error","message":"SyntaxError: Unexpected token } in JSON at position 19\n    at JSON.parse (<anonymous>)\n    at parse (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/body-parser/lib/types/json.js:88:17)\n    at /Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/body-parser/lib/read.js:116:18\n    at invokeCallback (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/raw-body/index.js:262:16)\n    at done (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/raw-body/index.js:251:7)\n    at IncomingMessage.onEnd (/Users/daniela.calcaianu/Desktop/movie-catalog/node_modules/raw-body/index.js:307:7)\n    at emitNone (events.js:106:13)\n    at IncomingMessage.emit (events.js:208:7)\n    at endReadableNT (_stream_readable.js:1056:12)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","timestamp":"09:49:32"}
+{"level":"info","message":"Info message","timestamp":"10:55:07"}
+{"level":"warn","message":"Warning message","timestamp":"10:55:07"}
+{"level":"info","message":"Info message","timestamp":"11:29:20"}
+{"level":"warn","message":"Warning message","timestamp":"11:29:20"}
